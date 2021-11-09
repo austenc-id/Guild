@@ -1,7 +1,7 @@
 class Dungeondex:
-  
-  from data.pokefiles import pokefiles
-  lists = pokefiles.initialize.all()
+  from utilities.initialize import initialize
+  # > 2 call the initialize model to get lists
+  lists = initialize.all()
   pokelist = lists[0]
   abilitylist = lists[1]
   qualitylist = lists[2]
@@ -9,10 +9,12 @@ class Dungeondex:
   
   def build():
     from data.models import POKEMON, ABILITY, TYPE, QUALITY
+    dungeondex = []
     pokedex = []
     abilitydex = []
     qualitydex = []
     typedex = []
+    # > 6 loop through each list item to create a python object using the corresponding model then add it to the appropriate support dex
     for ability in Dungeondex.abilitylist:
       ability = ABILITY.Ability(ability)
       abilitydex.append(ability)
@@ -22,6 +24,7 @@ class Dungeondex:
     for type in Dungeondex.typelist:
       type = TYPE.Type(type)
       typedex.append(type)
+    # > 7 loop through each pokemon attribute and support dex to assign the appropriate objects to the pokemon before adding it to the pokedex
     for pokemon in Dungeondex.pokelist:
       types = []
       for type in pokemon['typing']:
@@ -42,5 +45,5 @@ class Dungeondex:
     pokedex.append(qualitydex)
     return pokedex
 
-
+# > 1 initializes the application and returns a pokedex
 pokedex = Dungeondex.build()

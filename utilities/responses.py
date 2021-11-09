@@ -30,6 +30,7 @@ class response:
         return option
 
     def selection(option, options):
+      # * 1a
       characters = response.validate.characters
       for entry in options:
         matched = characters(option, entry)
