@@ -1,1 +1,1 @@
-[]
+[{"name": "blaze", "effect": "increase fire-type power", "activation": "health below 25%"}, {"name": "overgrow", "effect": "increase grass-type power", "activation": "health below 25%"}, {"name": "torrent", "effect": "increase water-type power", "activation": "health below 25%"}]
