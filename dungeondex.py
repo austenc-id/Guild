@@ -9,7 +9,6 @@ class Dungeondex:
   
   def build():
     from data.models import POKEMON, ABILITY, TYPE, QUALITY
-    dungeondex = []
     pokedex = []
     abilitydex = []
     qualitydex = []

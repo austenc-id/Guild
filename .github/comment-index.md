@@ -1,7 +1,7 @@
 ###### updated 11-08-2021
 # Comment Code Index
 A list of symbol meanings used can be found [here](./comment-key.md).
-> Click on the links to jump to the file and line containing the comment.
+> In VS code click on the links to jump to the file and line containing the comment.
 
 - `>`
   - 1 - [dungeondex 48](vscode://file/X:/dungeon-dex/dungeondex.py:48)

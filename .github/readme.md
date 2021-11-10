@@ -16,12 +16,10 @@ Using the Python 3.9.7+ in the command line, a user can:
   - name
   - effect
   - activating event
-  - list of pokemon (planned)
 - enter typing data including:
   - name
   - strengths*
   - weaknesses*
-  - list of pokemon (planned)
 - save all data entered into appropriate json files
 ### Planned
 - *pull typing data from pokeapi using the requests lib
@@ -36,7 +34,6 @@ Using the Python 3.9.7+ in the command line, a user can:
   - power
   - accuracy
   - upgrades
-  - list of pokemon
 - ability to update saved data
 - ui to view all saved data
 ### Possible
