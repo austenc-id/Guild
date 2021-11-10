@@ -47,7 +47,35 @@ class Dungeondex:
 
 # > 1 initializes the application and returns the dungeondex
 dungeondex = Dungeondex.build()
-
-for pokemon in dungeondex:
-  print(pokemon.species)
-  print(pokemon.resistances)
+options = ['show all', 'search', 'done']
+action = input(f'what would you like to do?\n{options}\n')
+while action != 'done':
+  if action == 'show all':
+    for pokemon in dungeondex:
+      print(pokemon.species)
+  elif action == 'search':
+    find = input('enter the pokemon\'s name: ')
+    for pokemon in dungeondex:
+      if find == pokemon.species:
+        found = pokemon
+        break
+    vals = vars(found)
+    exclude = ['typing', 'multipliers', 'resistances']
+    for item in vals:
+      if item == 'species':
+        print(vals[item])
+      elif item == 'typing':
+        count = len(pokemon.typing)
+        typings = 'a '
+        for typing in pokemon.typing:
+          typing = typing.name
+          typings += typing
+          if count == 1:
+            typings += ' type.'
+          else:
+            typings += ' and '
+            count -= 1
+        print(typings)
+      elif item == 'zero':
+        print(f'immune to: {vals[item]} type attacks.')
+  action = input(f'what would you like to do?\n{options}\n')
