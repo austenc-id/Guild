@@ -16,13 +16,10 @@ Using the Python 3.9.7+ in the command line, a user can:
   - name
   - effect
   - activating event
-- enter typing data including:
-  - name
-  - strengths*
-  - weaknesses*
+- pull typing data from pokeapi using the requests lib
+- ui to view most saved data
 - save all data entered into appropriate json files
 ### Planned
-- *pull typing data from pokeapi using the requests lib
 - enter location data including:
   - dungeons
   - pokemon found
@@ -35,7 +32,6 @@ Using the Python 3.9.7+ in the command line, a user can:
   - accuracy
   - upgrades
 - ability to update saved data
-- ui to view all saved data
 ### Possible
 - kecleon shop data
 - camp data
@@ -43,10 +39,3 @@ Using the Python 3.9.7+ in the command line, a user can:
 
 ## Comments
 My goal is to provide a clear roadmap to read my code. You can find an index of my comments [here](./comment-index.md) and the key to reading them [here](./comment-key.md).
-
-## Credits
-- VS Code
-- Github
-- Bulbapedia
-- Pokemondb
-- Better Comments
