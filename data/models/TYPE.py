@@ -1,7 +1,9 @@
-class Type:
-  def __init__(pType, data):
-    pType.name = data['name']
-    pType.interactions = data
+class Typing:
+  def __init__(typing, data):
+    typing.name = data['name']
+    typing.strengths = data['strengths']
+    typing.weaknesses = data['weaknesses']
+    typing.immunity = data['immunities']
 
   def new():
     from utilities.responses import response
@@ -11,7 +13,7 @@ class Type:
       addnew = input('add new type?\n')
     while addnew in response.polar.yes:
       name = input('type name: ')
-      ptype = {'name': name}
-      data.append(ptype)
+      typing = {'name': name}
+      data.append(typing)
       addnew = input('add new type?\n')
     return data
