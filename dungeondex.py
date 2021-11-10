@@ -41,13 +41,13 @@ class Dungeondex:
             pokemon.update({'abilities': abilities})
             pokemon = POKEMON.Pokemon(pokemon)
             pokedex.append(pokemon)
-        pokedex.append(qualitydex)
+        # pokedex.append(qualitydex)
         return pokedex
 
 
-# > 1 initializes the application and returns a pokedex
-pokedex = Dungeondex.build()
-bulbasaur = pokedex[0]
-print(bulbasaur.species)
-for typing in bulbasaur.typing:
-    print(typing.name, typing.strengths)
+# > 1 initializes the application and returns the dungeondex
+dungeondex = Dungeondex.build()
+
+for pokemon in dungeondex:
+  print(pokemon.species)
+  print(pokemon.resistances)

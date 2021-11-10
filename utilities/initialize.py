@@ -9,7 +9,7 @@ class initialize:
     pokelist = initialize.pokemon()
     abilitylist = initialize.abilities()
     qualitylist = initialize.qualities()
-    typelist = api.getdata()
+    typelist = initialize.typing()
     # > 5 ask user to add new data then add that data to the correct list
     addnew = input('would you like to add new data?\n')
     if addnew == 'yes':
@@ -81,9 +81,11 @@ class initialize:
       qualitylist.append(quality)
     return qualitylist
 
-  def types():
+  def typing():
     typelist = []
-    file = pokefiles.typing.read()
-    for type in file:
+    data = pokefiles.typing.read()
+    if len(data) < 18:
+      data = api.getdata()
+    for type in data:
       typelist.append(type)
     return typelist
