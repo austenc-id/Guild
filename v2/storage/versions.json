@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Rescue Team DX",
+    "dexids": [],
+    "pokedex": [],
+    "generations": [
+      { "name": "1", "ids": "all" },
+      { "name": "2", "ids": "all" },
+      { "name": "3", "ids": "all" },
+      { "name": "4", "ids": "some" },
+      { "name": "5", "ids": "none" },
+      { "name": "6", "ids": "none" },
+      { "name": "7", "ids": "none" },
+      { "name": "8", "ids": "none" }
+    ]
+  }
+]
