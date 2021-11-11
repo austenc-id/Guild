@@ -3,8 +3,6 @@ from models import version
 
 
 DXdex = version.DX.dexids
-start = 1
-end = 386
 pokedex = data.pokemon(DXdex)
 for pokemon in pokedex:
   print(pokemon.species)
