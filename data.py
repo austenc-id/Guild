@@ -53,6 +53,7 @@ class build:
     def pokedex(dexids):
         import pickle as files
         import os
+        import json
         pokedex = []
         counter = 1
         for dexid in dexids:
@@ -60,6 +61,9 @@ class build:
             if os.path.exists(path):
                 with open(path, 'rb') as file:
                     pokemon = files.load(file)
+                    pokemon = {'dexid': pokemon.dexid, 'species': pokemon.species,
+                               'typings': pokemon.typings, 'abilities': pokemon.abilities}
+                    pokemon = Pokemon(pokemon)
                     pokedex.append(pokemon)
             else:
                 print(f'requesting {counter} of {len(dexids)}')
