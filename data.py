@@ -53,7 +53,6 @@ class build:
     def pokedex(dexids):
         import pickle as files
         import os
-        import json
         pokedex = []
         counter = 1
         for dexid in dexids:
@@ -61,9 +60,6 @@ class build:
             if os.path.exists(path):
                 with open(path, 'rb') as file:
                     pokemon = files.load(file)
-                    pokemon = {'dexid': pokemon.dexid, 'species': pokemon.species,
-                               'typings': pokemon.typings, 'abilities': pokemon.abilities}
-                    pokemon = Pokemon(pokemon)
                     pokedex.append(pokemon)
             else:
                 print(f'requesting {counter} of {len(dexids)}')
@@ -90,8 +86,42 @@ class build:
                         ability = build.ability(name, url)
                         formatted.append(ability)
                 abilities = formatted
+                typingspath = 'storage/typings'
+                resistvals = {}
+                alltypings = os.listdir(typingspath)
+                for typing in alltypings:
+                  with open(f'{typingspath}/{typing}', 'rb') as typing:
+                    typing = files.load(typing)
+                    resistvals.update({typing.name: 1})
+                for typing in typings:
+                  for immunity in typing.immunities:
+                      resistvals[immunity] *= 0
+                  for resist in typing.resistances:
+                      resistvals[resist] *= 0.5
+                  for weak in typing.weaknesses:
+                      resistvals[weak] *= 2
+                for ability in abilities:
+                    if ability.name == 'levitate':
+                        resistvals['ground'] *= 0
+                immune = []
+                quarter = []
+                half = []
+                double = []
+                quadruple = []
+                for typing in resistvals:
+                  value = resistvals[typing]
+                  if value == 0:
+                      immune.append(typing)
+                  elif value == 0.25:
+                      quarter.append(typing)
+                  elif value == 0.5:
+                      half.append(typing)
+                  elif value == 2:
+                      double.append(typing)
+                  elif value == 4:
+                      quadruple.append(typing)
                 pokemon = {'dexid': dexid, 'species': species,
-                           'typings': typings, 'abilities': abilities}
+                           'typings': typings, 'abilities': abilities, 'immune': immune, 'quarter': quarter, 'half': half, 'double': double, 'quadruple': quadruple}
                 pokemon = Pokemon(pokemon)
                 path = f'storage/pokemon/{dexid}'
                 with open(path, 'w') as file:
