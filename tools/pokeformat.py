@@ -1,4 +1,4 @@
-class stringify:
+class poke:
   def species(data):
     species = data.capitalize()
     return species
@@ -18,21 +18,21 @@ class stringify:
     return abilities
 
   def print(data):
-      species = stringify.species(data.species)
-      typing = stringify.typing(data.typings)
-      abilities = stringify.abilities(data.abilities)
+      species = poke.species(data.species)
+      typing = poke.typing(data.typings)
+      abilities = poke.abilities(data.abilities)
       print('\n', species)
       print('', typing)
       print('', abilities, '\n')
       return
 
   def printtyping(data):
-    print('feature coming soon')
+    print('\n   feature coming soon\n')
     return
 
   def printability(data):
     ability = data.name
     description = data.description
-    ability = f'\n{ability} - {description}\n'
+    ability = f'\n   {ability} - {description}\n'
     print(ability)
     return
