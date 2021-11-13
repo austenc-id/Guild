@@ -1,0 +1,10 @@
+[
+  { "name": 1, "region": "kanto", "start": 1, "end": 151 },
+  { "name": 2, "region": "johto", "start": 152, "end": 251 },
+  { "name": 3, "region": "hoehn", "start": 252, "end": 386 },
+  { "name": 4, "region": "sinnoh", "start": 387, "end": 493 },
+  { "name": 5, "region": "unova", "start": 494, "end": 649 },
+  { "name": 6, "region": "kalos", "start": 650, "end": 721 },
+  { "name": 7, "region": "alola", "start": 722, "end": 809 },
+  { "name": 8, "region": "galar", "start": 810, "end": 898 }
+]
