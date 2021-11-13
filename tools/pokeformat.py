@@ -81,6 +81,7 @@ class poke:
       print()
     else:
       print(f'{species} has no immunities.')
+      print()
     if len(vresist) > 0:
       string = f'{species} is very resistant to '
       if len(vresist) == 1:
