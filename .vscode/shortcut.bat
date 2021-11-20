@@ -1,2 +1,0 @@
-cd X:\MysteonDex
-code .
