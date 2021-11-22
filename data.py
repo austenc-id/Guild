@@ -1,15 +1,21 @@
+# import standard python libs
+from json import loads
+import pickle as files
+import os
+# import project module designed to request data from pokeapi.co using the pip install requests lib and return json data
 from tools.pokeapi import request
-from models.typing import Typing
-from models.pokemon import Pokemon
-from models.ability import Ability
+# object models for each type of relevant data
 from models.version import Version
 from models.generation import Generation as Gen
+from models.pokemon import Pokemon
+from models.typing import Typing
+from models.ability import Ability
 
 
+# class of methods for the MysteonDex to access to parse and build pokemon data
 class build:
-
+  # method to parse data in versions.json then use other methods to build and return a complete pokedex
   def version(name):
-    from json import loads
     path = 'storage/versions.json'
     file = open(path).read()
     data = loads(file)
@@ -39,9 +45,8 @@ class build:
     version.update({'pokedex': pokedex})
     version = Version(version)
     return version
-
+  # method to parse data in generations.json and return applicable dexids
   def generation(genid):
-    from json import loads
     path = 'storage/generations.json'
     file = open(path).read()
     data = loads(file)
@@ -49,10 +54,11 @@ class build:
       if entry['name'] == int(genid):
         gen = Gen(entry)
         return gen
-
+  
+  # methods to access or build python objects from local files or pokeapi data
+  
+  # builds each pokemon object then returns a list
   def pokedex(dexids):
-    import pickle as files
-    import os
     pokedex = []
     counter = 1
     for dexid in dexids:
@@ -130,10 +136,8 @@ class build:
           files.dump(pokemon, file)
         pokedex.append(pokemon)
     return pokedex
-
+  # builds each pokemon typing then returns a python object 
   def typing(name, url):
-    import pickle as files
-    import os
     path = f'storage/typings/{name}'
     if os.path.exists(path):
       with open(path, 'rb') as file:
@@ -168,10 +172,8 @@ class build:
         with open(path, 'wb') as file:
           files.dump(typing, file)
     return typing
-
+  # builds each pokemon ability then returns a python object
   def ability(name, url):
-    import pickle as files
-    import os
     path = f'storage/abilities/{name}'
     if os.path.exists(path):
       with open(path, 'rb') as file:
