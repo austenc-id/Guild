@@ -22,6 +22,6 @@ All Pokemon available in Pokemon Mystery Dungeon Rescue Team DX to include:
 
 
  ## Next build
-[prototype-5](github.com/austenc-id/MysteonDex/tree/prototype-5-kivy)
+[prototype-5](github.com/austenc-id/MysteonDex/tree/prototype-5-kivy):
 
 Same as prototype-4 but the ui will be built with kivy
