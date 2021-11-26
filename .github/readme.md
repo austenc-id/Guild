@@ -3,8 +3,11 @@
 
 ## Credits
 [pokeapi](pokeapi.co)
+
 [serebii](serebii.net/dungeonrescueteamdx/pokemon.shtml)
+
 [tkinter docs](tkdocs.com/)
+
 [kivy](kivy.org)
 
 ## Current Build
