@@ -19,23 +19,22 @@
   <body>
     <!-- > page title and main image -->
     <header class="flex col">
-      <!-- ? media queries are not working as intended AFTER templates are rendered -->
       <h1 class="heading">Austen C. Myers-Flachson</h1>
-      <!-- ! could use a nice background color/image -->
+      <!-- ! could use a nice background image -->
       <img
         class="portrait"
-        src="./assets/portrait.jpg"
+        src="./assets/artsy.svg"
         alt="austen-myers-professional-portrait"
       />
-    </header>
-    <!-- > navbar and empty section to receive templates -->
-    <main>
       <nav class="flex">
         <h3 class="heading" onclick="render('about-me')">about me</h3>
-        <h3 class="heading" onclick="render('skills')">skills</h3>
-        <h3 class="heading" onclick="render('work-history')">work history</h3>
+        <!-- ! <h3 class="heading" onclick="render('skills')">skills</h3>
+        <h3 class="heading" onclick="render('work-history')">work history</h3> -->
       </nav>
-      <section id="target"></section>
+    </header>
+    <!-- > navbar and empty div to receive templates -->
+    <main>
+      <div id="target"></div>
     </main>
   </body>
   <!-- > templates for each navbar item -->
@@ -44,15 +43,23 @@
     <template id="about-me">
       <h2 class="heading">208 to 808 and back</h2>
       <section class="content">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum
-        impedit recusandae asperiores quaerat dolor tempora fugiat illum, ex
-        alias voluptates eum minima velit? Repellendus ducimus eos cupiditate
-        voluptas repudiandae eveniet voluptatibus. Non recusandae ratione quas,
-        laborum mollitia dolorum voluptates, quae autem temporibus quis in ab
-        tenetur unde. Numquam, corporis enim.
+        After being born in Boise, Idaho <b>(208)</b> in 1994; to say that I
+        moved around a lot would be an understatement. I could go into detail
+        about every city I've lived in, but honestly no one has that kind of
+        time. I went to 5 elementary schools before I made it to the 5th grade.
+        (That should give you a good idea of what I'm talking about here.) At
+        that point my mom married my step-father (but I just call him "Dad"), a
+        marine, and ironically things settled down, well... kind of. I went to 2
+        more elementary schools and 1 middle school to finish off my primary
+        education. Then 3 high schools to round everything out. Finally
+        graduating from James Campbell High School, Ewa Beach, Hawai'i
+        <b>(808)</b> in 2012. After a few years bouncing around for college,
+        employment, and binge-drinking opportunities; I finally decided it was
+        time to come home. So I packed up and and returned to Boise in the
+        summer of 2016 and I've been here ever since... well... kind of.
       </section>
     </template>
-    <template id="skills">
+    <!-- ! <template id="skills">
       <h2 class="heading">skills</h2>
       <section class="content">
         <details open>
@@ -89,6 +96,6 @@
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum, tempora?
         </details>
       </section>
-    </template>
+    </template> -->
   </templates>
 </html>
