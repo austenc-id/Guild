@@ -1,26 +1,27 @@
 <!DOCTYPE html>
-<!-- > comment key -->
+<!-- comment key  -->
 <!-- > = description/title -->
-<!-- ? = needs investigating -->
-<!-- ! = todo -->
-<!-- * = save for other projects -->
+<!-- ? = needs investigating  -->
+<!-- ! = idea -->
+<!-- * = task/todo -->
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Profile - Austen M.</title>
-    <!-- >* modular/reusable custom class styling -->
+    <!-- > modular/reusable custom class styling -->
     <link rel="stylesheet" href="./index/signature.css" />
     <!-- > styling unique to this page -->
     <link rel="stylesheet" href="./index/style.css" />
-    <!-- >* simple js functionality to render template data to target sections -->
+    <!-- > simple js functionality to render template data to target sections -->
     <script src="./index/courier.js"></script>
   </head>
+  <!-- ! background and text color could be darkened -->
   <body>
-    <!-- > page title and main image -->
+    <!-- > my name, portrait, and section navbar -->
     <header class="flex col">
+      <!-- ! could use a nice background pattern -->
       <h1 class="heading">Austen C. Myers-Flachson</h1>
-      <!-- ! could use a nice background image -->
       <img
         class="portrait"
         src="./assets/artsy.svg"
@@ -28,19 +29,33 @@
       />
       <nav class="flex">
         <h3 class="heading" onclick="render('about-me')">about me</h3>
-        <!-- ! <h3 class="heading" onclick="render('skills')">skills</h3>
-        <h3 class="heading" onclick="render('work-history')">work history</h3> -->
+        <h3 class="heading" onclick="render('background')">background</h3>
+        <h3 class="heading" onclick="render('hobbies')">hobbies</h3>
       </nav>
     </header>
-    <!-- > navbar and empty div to receive templates -->
+    <!-- > empty target div to receive templates -->
     <main>
       <div id="target"></div>
     </main>
   </body>
   <!-- > templates for each navbar item -->
-  <!-- ! draft the actual content for each template -->
   <templates>
+    <!-- > basic blurb about my current life and what my goals are -->
+    <!-- * replace the placeholder text -->
     <template id="about-me">
+      <h2 class="heading">a short bio</h2>
+      <section class="content">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis
+        consequatur dolorum fugiat, blanditiis qui molestiae eveniet. Nobis,
+        laudantium commodi? Architecto, sunt temporibus? Esse cum cupiditate
+        saepe blanditiis, rem tempora alias maiores quia ex debitis omnis,
+        laborum quis nostrum, eos impedit similique. Doloremque numquam earum
+        dolore eaque nisi expedita cumque quae!
+      </section>
+    </template>
+    <!-- > where I've lived -->
+    <!-- ! a map might be cool here -->
+    <template id="background">
       <h2 class="heading">208 to 808 and back</h2>
       <section class="content">
         After being born in Boise, Idaho <b>(208)</b> in 1994; to say that I
@@ -59,43 +74,37 @@
         summer of 2016 and I've been here ever since... well... kind of.
       </section>
     </template>
-    <!-- ! <template id="skills">
-      <h2 class="heading">skills</h2>
+    <!-- > my interests and hobbies as a list of dropdowns -->
+    <template id="hobbies">
+      <h2 class="heading">hobbies</h2>
       <section class="content">
-        <details open>
-          <summary>medical maintenance and repair</summary>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum, tempora?
+        <details>
+          <summary>data collection/organization</summary>
+          <p>I am a nerd. Fight me.</p>
         </details>
         <details>
-          <summary>technical troubleshooting</summary>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum, tempora?
+          <summary>pokemon</summary>
+          <!-- * fix ugly indent -->
+          <p>
+            It's 7d rock-paper-scissors and 22d chess wrapped in a fiesta of
+            semi-sentient animal MMA. I love it.
+          </p>
         </details>
         <details>
-          <summary>alchemical problem solving</summary>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum, tempora?
+          <summary>dogs</summary>
+          <!-- * fix me -->
+          <!-- ? dogs portrait figure is WONK mm..aa..yy..bb..ee @media could fix :/ -->
+          <figure class="flex">
+            <figcaption id="Fletch">Fletcher</figcaption>
+            <img
+              class="portrait dogs"
+              src="./assets/nova+fletcher.jpg"
+              alt="husky-and-labrador-portrait"
+            />
+            <figcaption id="Nova">Nova</figcaption>
+          </figure>
         </details>
       </section>
     </template>
-    <template id="work-history">
-      <h2 class="heading">Work History</h2>
-      <section class="content">
-        <details open>
-          <summary>Idaho National Guard</summary>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum, tempora?
-        </details>
-        <details>
-          <summary>Verizon</summary>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum, tempora?
-        </details>
-        <details>
-          <summary>Sun Valley Company</summary>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum, tempora?
-        </details>
-        <details>
-          <summary>Starbucks</summary>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum, tempora?
-        </details>
-      </section>
-    </template> -->
   </templates>
 </html>
