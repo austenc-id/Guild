@@ -16,14 +16,14 @@ header .portrait {
     width: 33%;
   }
 }
-@media screen and (min-width: 600px) {
+/* @media screen and (min-width: 600px) {
   .content {
     background-image: url(../assets/signature-background.svg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: top;
   }
-}
+} */
 .content {
   border: 5px solid white;
   padding: 2.5rem;
@@ -37,4 +37,28 @@ details > summary {
 }
 details[open] > summary {
   list-style-type: "◑";
+}
+.portrait.dogs {
+  border: 2.5px solid white;
+  border-radius: 100% 50% 100%;
+  max-width: 20vw;
+  height: auto;
+}
+figure {
+  justify-content: center;
+  max-width: 25vw;
+  height: auto;
+}
+figcaption {
+  color:white;
+  font-size: 25px;
+}
+#Nova {
+  margin-top: 1.5rem;
+}
+#Fletch {
+  margin-left: -1rem;
+  margin-right: 1rem;
+  margin-bottom: 1.5rem;
+  align-self: flex-end;
 }

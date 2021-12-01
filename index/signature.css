@@ -22,7 +22,6 @@
 .heading {
   color: var(--clr-txt);
   background-color: var(--clr-bg-secondary);
-  text-transform: capitalize;
   text-align: center;
   margin: auto;
   padding: 0.5rem;
