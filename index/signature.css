@@ -31,9 +31,9 @@
     color: var(--clr-txt);
     background-color: var(--clr-bg-tertiary);
     margin: 1rem auto 1rem;
-    padding: 2rem;
+    /* padding: 0rem; */
     border-radius: 25%;
-    text-indent: 5vw;
+    /* text-indent: 5vw; */
     max-width: 500px;
   }
 /* -------------------------------------------------------------------------- */

@@ -1,6 +1,6 @@
 :root {
   --clr-txt: #32cc04;
-  --clr-bg-primary: #333333;
+  --clr-bg-primary: #252525;
   --clr-bg-secondary: #755939be;
   --clr-bg-tertiary: #000000;
 }
@@ -25,7 +25,7 @@ header .portrait {
   }
 } */
 .content {
-  border: 5px solid white;
+  border: 5px solid #ffffff9a;
   padding: 2.5rem;
 }
 div .heading {
@@ -39,19 +39,23 @@ details[open] > summary {
   list-style-type: "◑";
 }
 .portrait.dogs {
-  border: 2.5px solid white;
+  border: 2.5px solid #ffffff9a;
   border-radius: 100% 50% 100%;
   max-width: 20vw;
   height: auto;
 }
 figure {
   justify-content: center;
-  max-width: 25vw;
-  height: auto;
+  /* max-width: 25vw; */
+  /* height: auto; */
+  /* margin: auto 1rem; */
 }
+
 figcaption {
-  color:white;
+  /* display: flex; */
+  color: white;
   font-size: 25px;
+  /* justify-content: space-around; */
 }
 #Nova {
   margin-top: 1.5rem;
@@ -61,4 +65,7 @@ figcaption {
   margin-right: 1rem;
   margin-bottom: 1.5rem;
   align-self: flex-end;
+}
+details > span {
+  padding: 50px;
 }
