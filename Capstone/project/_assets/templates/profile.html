@@ -1,0 +1,23 @@
+{% extends 'home.html' %}
+
+{% block profile %}
+<div class="container">
+    <div class="row">
+        <h1>Profile</h1>
+        <div class="col"></div>
+        <div class="col">
+            <h1>{{user.display_name}}</h1>
+            <div class="d-flex flex-column align-items-start">
+                <span>{{user.first_name.title}} {{user.last_name.title}}</span>
+                <span>{{user.email}}</span>
+                <span>{{user.phone}}</span>
+                {% if user.username == admin %}
+                <span>{{user.wallet}}</span>
+                {% endif %}
+            </div>
+        </div>
+        <div class="col"></div>
+    </div>
+</div>
+
+{% endblock %}

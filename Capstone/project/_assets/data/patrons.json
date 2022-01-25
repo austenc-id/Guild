@@ -1,0 +1,18 @@
+{
+	"patrons": [
+		{
+			"first_name": "Margie",
+			"last_name": "Myers",
+			"donation": 500,
+			"loan": 500,
+			"regcode": "9999"
+		},
+		{
+			"first_name": "NULL",
+			"last_name": "NULL",
+			"donation": 5000,
+			"loan": 0,
+			"regcode": "0000"
+		}
+	]
+}
