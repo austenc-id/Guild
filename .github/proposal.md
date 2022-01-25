@@ -47,33 +47,37 @@ What will they see on each page? What can they input and click and see? How will
 
 In this section list out all the models you'll have and the fields on each of them.
 
-> Patron:
+> Account:
 >
-> - user ID
-> - username
-> - password
-> - legal name
-> - display name
-> - email
-> - phone
-> - donation amount
-> - token count
-> - profile picture
-> - list of requests
+> - user ID/regcode = CharField(max_length=4)
+> - username = CharField(max_length=12)
+> - password = CharField(max_length=16, min_length=8)
+> - first_name = CharField(max_length=12)
+> - last_name = CharField(max_length=12)
+> - display name = CharField(max_length=20)
+> - email = EmailField(max_length=20)
+> - phone = CharField(max_length=10)
+> - donation amount = IntegerField()
+> - token count = IntegerField()
+> - profile picture -ImageField()
+> - list of requests ForeignKey('Site_Builder')
 
 > Site_Builder:
 >
-> - user ID
-> - request ID
+> - user ID = ForeignKey('Account')
+> - request ID = CharField(max_length=8)
 > - site admin data
-> - site type
-> - site title
-> - site logo
-> - site icons
-> - site images
-> - site fonts
-> - site colors
-> - build status
+>   - website url = URLField(max_length=20)
+>   - site description = CharField(max_length=20)
+> - site type = CharField(max_length=20, choices=[(eCommerce, 'eCommerce'), (blog, 'blog'), (other, 'other')])
+> - site title = CharField(max_length=20)
+> - site logo = ImageField(upload_to='path')
+> - site icons = CharField(choices=[(tbd, '')])
+> - additional site images = {'label': '', 'image': ''}
+> - primary_font = CharField(max_length=20)
+> - secondary_font = CharField(max_length=20)
+> - primary_color = CharField(max_length=10)
+> - build status = IntegerField()
 
 ## Schedule
 
