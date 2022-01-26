@@ -32,7 +32,11 @@
                         <a href="{% url 'auth:input' %}">Add Patron</a>
                     </button>
                 {% else %}
-                    <span>{{user.wallet}}</span>
+                    {% if user.unlimited %}
+                        <span>tokens: unlimited</span>
+                    {% else %}
+                        <span>tokens: {{user.wallet}}</span>
+                    {% endif %}
                 {% endif %}
             </div>
         </div>

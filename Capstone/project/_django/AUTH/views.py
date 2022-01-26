@@ -53,7 +53,7 @@ def complete(request):
             patron = patron[0]
             user.donation = patron.donation
             if patron.unlimited:
-                user.wallet = 999
+                user.unlimited = True
             else:
                 user.wallet = 1 + (user.donation // 100)
             user.save()

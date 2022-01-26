@@ -5,9 +5,9 @@ from django.contrib.auth.models import AbstractUser
 # Create your models here.
 
 class Account(AbstractUser):
-    avatar = ImageField(default='')
+    # avatar = ImageField(default='')
     username = CharField(max_length=12, unique=True)
-    password = CharField(max_length=16)
+    password = CharField(max_length=88)
     first_name = CharField(max_length=12)
     last_name = CharField(max_length=12)
     email = EmailField(max_length=40, unique=True)
@@ -15,6 +15,7 @@ class Account(AbstractUser):
     regcode = CharField(max_length=4, unique=True)
     phone = CharField(max_length=13)
     donation = IntegerField(default=0)
+    unlimited = BooleanField(default=False)
     wallet = IntegerField(default=0)
     # open_requests = ForeignKey(to, on_delete)
 
