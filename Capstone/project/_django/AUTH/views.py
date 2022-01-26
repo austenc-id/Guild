@@ -12,26 +12,22 @@ from .data import *
 
 def register(request):
     if request.POST:
-        registrant = extract_data(request.POST)
-        if registrant != 'invalid':
-            patrons = get_patrons()
-            verified = False
-            for patron in patrons:
-                patron = extract_data(patron)
-                if patron[0] == registrant[0]:
-                    if patron[1] == registrant[1]:
-                        if patron[2] == registrant[2]:
-                            verified = True
-                            break
-            if verified:
-                context = {
-                    'form': Verified(),
-                    'first_name': registrant[0],
-                    'last_name': registrant[1],
-                    'regcode': registrant[2],
+        regcode = request.POST['regcode']
+        patron = get_patron(regcode)
+        if patron != 'not found':
+            context = {
+                'form': Verified(),
+                'regcode': regcode,
+                'patron': patron,
+            }
+            return render(request, 'forms/verified.html', context)
 
-                }
-                return render(request, 'forms/verified.html', context)
+        else:
+            context = {
+                'form': Register(),
+                'error': patron,
+            }
+            return render(request, 'forms/register.html', context)
 
     return render(request, 'forms/register.html', {'form': Register()})
 
@@ -55,11 +51,11 @@ def complete(request):
     if request.POST:
         # takes in form submission and registers the user if valid
         form = Verified(request.POST)
-        print(request.POST)
         if form.is_valid():
             user = form.save(commit=False)
             user.set_password(form.cleaned_data['password'])
             patron_data = get_patron(user.regcode)
+            print(patron_data)
             user.wallet = 1 + (patron_data['donation'] // 100)
             user.save()
             return render(request, 'forms/login.html', {'message': 'registration complete', 'form': Login()})

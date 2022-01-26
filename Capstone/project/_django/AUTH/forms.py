@@ -5,7 +5,7 @@ from .models import *
 class Register(ModelForm):
     class Meta:
         model = Account
-        fields = ['first_name', 'last_name', 'regcode']
+        fields = ['regcode']
 
 
 class Verified(ModelForm):

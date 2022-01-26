@@ -13,19 +13,9 @@ def get_patrons():
     return patron_data['patrons']
 
 
-def extract_data(data):
-    try:
-        first = data['first_name']
-        last = data['last_name']
-        regcode = data['regcode']
-    except:
-        return 'invalid'
-    else:
-        return [first, last, regcode]
-
-
 def get_patron(regcode):
     patrons = get_patrons()
     for patron in patrons:
         if patron['regcode'] == regcode:
             return patron
+    return 'not found'

@@ -6,8 +6,8 @@
         <h1>Registration</h1>
         <div class="col"></div>
         <div class="col">
-            {% if errors %}
-            <h4>{{errors}}</h4>
+            {% if error %}
+            <h4>{{error}}</h4>
             {% endif %}
             <form class="d-flex flex-column align-items-center p-3" action="{% url 'auth:register' %}" method="post">
                 {% csrf_token %}
