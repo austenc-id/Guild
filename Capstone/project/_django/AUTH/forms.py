@@ -29,4 +29,4 @@ class Input(ModelForm):
     # input patron data
     class Meta:
         model = Patron
-        fields = '__all__'
+        fields = ['first_name', 'last_name', 'donation', 'unlimited']

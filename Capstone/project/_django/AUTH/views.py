@@ -1,3 +1,4 @@
+
 from django.shortcuts import render, redirect, reverse
 from django.contrib.auth import (
     get_user_model,
@@ -17,8 +18,9 @@ def register(request):
         # verify regcode and either continue registration or display error
         regcode = request.POST['regcode']
         patron = Patron.objects.filter(regcode=regcode)
+        patron = patron[0]
         # print(patron)
-        if patron:
+        if patron.registered == False:
             context = {
                 'form': Verified(data={
                     'regcode': regcode,
@@ -48,9 +50,16 @@ def complete(request):
             user = form.save(commit=False)
             user.set_password(form.cleaned_data['password'])
             patron = Patron.objects.filter(regcode=user.regcode)
-            user.donation = patron[0].donation
-            user.wallet = 1 + (user.donation // 100)
+            patron = patron[0]
+            user.donation = patron.donation
+            if patron.unlimited:
+                user.wallet = 999
+            else:
+                user.wallet = 1 + (user.donation // 100)
             user.save()
+            patron.registered = True
+            patron.save()
+
             return render(request, 'forms/login.html', {'message': 'registration complete', 'form': Login()})
 
         else:
@@ -90,5 +99,7 @@ def input(request):
         form = Input(request.POST)
         if form.is_valid():
             patron = form.save()
+            patron.regcode = gen_regcode()
+            patron.save()
             context.update({'message': 'input successful'})
     return render(request, 'forms/input.html', context)

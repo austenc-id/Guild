@@ -29,6 +29,7 @@ class Patron(Model):
     regcode = CharField(max_length=4, unique=True)
     donation = IntegerField(default=0)
     registered = BooleanField(default=False)
+    unlimited = BooleanField(default=False)
 
     def __str__(self):
         legal_name = f'{self.first_name.title()} {self.last_name.title()}'
