@@ -1,4 +1,12 @@
+# Project
+
+[proposal](proposal.md)
+
 # To do
 
-- update [proposal](proposal.md)
-- update patrons.json upon registration
+- split registration form
+- create user update view
+
+# Feature Wishlist
+
+- QR regcodes
