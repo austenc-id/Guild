@@ -12,6 +12,7 @@ from .data import *
 
 def register(request):
     if request.POST:
+        # verify regcode and either continue registration or display error
         regcode = request.POST['regcode']
         patron = get_patron(regcode)
         if patron != 'not found':
@@ -66,5 +67,6 @@ def login(request):
 
 
 def logout(user):
+    # bye felicia
     dj_logout(user)
     return redirect(reverse('home:page'))

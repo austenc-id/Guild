@@ -11,8 +11,9 @@
                 <span>{{user.first_name.title}} {{user.last_name.title}}</span>
                 <span>{{user.email}}</span>
                 <span>{{user.phone}}</span>
-                {% if user.username == admin %}
-                <span>{{user.wallet}}</span>
+                <!-- only render wallet if user is patron -->
+                {% if user.username != admin %}
+                    <span>{{user.wallet}}</span>
                 {% endif %}
             </div>
         </div>
