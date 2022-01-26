@@ -5,8 +5,10 @@ from django.contrib.auth import (
     authenticate as auth,
     login as dj_login,
 )
+from django.contrib.auth.decorators import login_required
 from .forms import *
 from .data import *
+from .models import *
 # Create your views here.
 
 
@@ -14,41 +16,47 @@ def register(request):
     if request.POST:
         # verify regcode and either continue registration or display error
         regcode = request.POST['regcode']
-        patron = get_patron(regcode)
-        if patron != 'not found':
+        patron = Patron.objects.filter(regcode=regcode)
+        # print(patron)
+        if patron:
             context = {
-                'form': Verified(),
-                'regcode': regcode,
-                'patron': patron,
+                'form': Verified(data={
+                    'regcode': regcode,
+                }),
             }
             return render(request, 'forms/verified.html', context)
 
         else:
             context = {
                 'form': Register(),
-                'error': patron,
+                'error': 'not found',
             }
             return render(request, 'forms/register.html', context)
 
     return render(request, 'forms/register.html', {'form': Register()})
+# another split??
 
 
 def complete(request):
+    print('request stuff', request.POST)
+
     if request.POST:
         # takes in form submission and registers the user if valid
         form = Verified(request.POST)
         if form.is_valid():
+            print(form.cleaned_data)
             user = form.save(commit=False)
             user.set_password(form.cleaned_data['password'])
-            patron_data = get_patron(user.regcode)
-            print(patron_data)
-            user.wallet = 1 + (patron_data['donation'] // 100)
+            patron = Patron.objects.filter(regcode=user.regcode)
+            user.donation = patron[0].donation
+            user.wallet = 1 + (user.donation // 100)
             user.save()
             return render(request, 'forms/login.html', {'message': 'registration complete', 'form': Login()})
 
         else:
             # invalid forms return the register template with errors
-            return render(request, 'forms/register.html', {'form': Register(), 'errors': form.errors})
+            print(form.errors.values())
+            return render(request, 'forms/register.html', {'form': Register(), 'errors': form.errors.values()})
 
 
 def login(request):
@@ -66,7 +74,21 @@ def login(request):
     return render(request, 'forms/login.html', {'form': Login()})
 
 
+@login_required
 def logout(user):
     # bye felicia
     dj_logout(user)
     return redirect(reverse('home:page'))
+
+
+@login_required
+def input(request):
+    context = {
+        'form': Input()
+    }
+    if request.POST:
+        form = Input(request.POST)
+        if form.is_valid():
+            patron = form.save()
+            context.update({'message': 'input successful'})
+    return render(request, 'forms/input.html', context)

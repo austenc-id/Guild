@@ -1,4 +1,4 @@
-from django.forms import ModelForm
+from django.forms import ModelForm, TextInput
 from .models import *
 
 
@@ -15,6 +15,7 @@ class Verified(ModelForm):
         model = Account
         fields = ['first_name', 'last_name', 'regcode', 'username',
                   'password', 'display_name', 'phone', 'email']
+        widgets = {'regcode': TextInput(attrs={'type': 'hidden'})}
 
 
 class Login(ModelForm):
@@ -22,3 +23,10 @@ class Login(ModelForm):
     class Meta:
         model = Account
         fields = ['username', 'password']
+
+
+class Input(ModelForm):
+    # input patron data
+    class Meta:
+        model = Patron
+        fields = '__all__'

@@ -12,7 +12,11 @@
                 <span>{{user.email}}</span>
                 <span>{{user.phone}}</span>
                 <!-- only render wallet if user is patron -->
-                {% if user.username != admin %}
+                {% if user.is_superuser %}
+                    <button class="btn-dark">
+                        <a href="{% url 'auth:input' %}">Add Patron</a>
+                    </button>
+                {% else %}
                     <span>{{user.wallet}}</span>
                 {% endif %}
             </div>

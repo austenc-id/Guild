@@ -21,3 +21,15 @@ class Account(AbstractUser):
     def __str__(self):
         legal_name = f'{self.first_name.title()} {self.last_name.title()}'
         return legal_name
+
+
+class Patron(Model):
+    first_name = CharField(max_length=12)
+    last_name = CharField(max_length=12)
+    regcode = CharField(max_length=4, unique=True)
+    donation = IntegerField(default=0)
+    registered = BooleanField(default=False)
+
+    def __str__(self):
+        legal_name = f'{self.first_name.title()} {self.last_name.title()}'
+        return legal_name
