@@ -130,3 +130,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Additional Settings:
 STATICFILES_DIRS = [ASSET_DIR / '_assets/']
 AUTH_USER_MODEL = 'AUTH.Account'
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True

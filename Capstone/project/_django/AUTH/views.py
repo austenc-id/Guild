@@ -32,21 +32,6 @@ def register(request):
     return render(request, 'forms/register.html', {'form': Register()})
 
 
-def login(request):
-    if request.POST:
-        # takes in form submission and logs the user in if valid
-        form = request.POST
-        user = auth(
-            request, username=form['username'], password=form['password'])
-        if user != None:
-            dj_login(request, user)
-            return redirect(reverse('home:profile'))
-        else:
-            return render(request, 'forms/login.html', {'form': Login(), 'message': 'invalid login'})
-
-    return render(request, 'forms/login.html', {'form': Login()})
-
-
 def complete(request):
     if request.POST:
         # takes in form submission and registers the user if valid
@@ -63,3 +48,23 @@ def complete(request):
         else:
             # invalid forms return the register template with errors
             return render(request, 'forms/register.html', {'form': Register(), 'errors': form.errors})
+
+
+def login(request):
+    if request.POST:
+        # takes in form submission and logs the user in if valid
+        form = request.POST
+        user = auth(
+            request, username=form['username'], password=form['password'])
+        if user != None:
+            dj_login(request, user)
+            return redirect(reverse('home:profile'))
+        else:
+            return render(request, 'forms/login.html', {'form': Login(), 'message': 'invalid login'})
+
+    return render(request, 'forms/login.html', {'form': Login()})
+
+
+def logout(user):
+    dj_logout(user)
+    return redirect(reverse('home:page'))

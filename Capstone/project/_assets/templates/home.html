@@ -17,9 +17,16 @@
         <header class="d-flex align-items-center justify-content-between">
             <h1>Atlas Electronica</h1>
             <span class="d-flex align-items-center gap-2">
-                <a href="{% url 'auth:login' %}">Login</a>
-                <a href="{% url 'auth:register' %}">Register</a>
+
+                {% if user.is_authenticated %}
+                    Welcome, <a href="{% url 'home:profile' %}">{{user.display_name}}</a>
+                    <a href="{% url 'auth:logout' %}">Logout</a>
+                {% else %}
+                    <a href="{% url 'auth:login' %}">Login</a>
+                    <a href="{% url 'auth:register' %}">Register</a>
+                {% endif %}
             </span>
+
         </header>
         <main class="d-flex flex-column m-2 p-2 text-center">
             {% block profile%}
