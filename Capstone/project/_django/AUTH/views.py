@@ -14,28 +14,36 @@ from .models import *
 
 
 def register(request):
+    context = {
+        'form_title': 'register',
+        'form': Register(),
+        'url': 'auth:register'
+    }
     if request.POST:
         # verify regcode and either continue registration or display error
         regcode = request.POST['regcode']
         patron = Patron.objects.filter(regcode=regcode)
-        patron = patron[0]
+        if patron:
+            patron = patron[0]
         # print(patron)
-        if patron.registered == False:
-            context = {
-                'form': Verified(data={
-                    'regcode': regcode,
-                }),
-            }
-            return render(request, 'forms/verified.html', context)
+            if patron.registered == False:
+                context.update({
+                    'form': Verified(data={
+                        'regcode': regcode,
+                    }),
+                    'url': 'auth:complete'
+
+                })
+                return render(request, 'forms.html', context)
 
         else:
-            context = {
+            context.update({
                 'form': Register(),
-                'error': 'not found',
-            }
-            return render(request, 'forms/register.html', context)
+                'errors': 'not found',
+            })
+            return render(request, 'forms.html', context)
 
-    return render(request, 'forms/register.html', {'form': Register()})
+    return render(request, 'forms.html', context)
 # another split??
 
 
@@ -59,16 +67,32 @@ def complete(request):
             user.save()
             patron.registered = True
             patron.save()
-
-            return render(request, 'forms/login.html', {'message': 'registration complete', 'form': Login()})
+            context = {
+                'form_title': 'login',
+                'form': Login(),
+                'url': 'auth:login',
+                'errors': 'registration complete'
+            }
+            return render(request, 'forms.html', context)
 
         else:
             # invalid forms return the register template with errors
-            print(form.errors.values())
-            return render(request, 'forms/register.html', {'form': Register(), 'errors': form.errors.values()})
+            context = {
+                'form_title': 'register',
+                'form': Verified(),
+                'url': 'auth:complete',
+                'errors': form.errors.values()
+
+            }
+            return render(request, 'forms.html', context)
 
 
 def login(request):
+    context = {
+        'form_title': 'login',
+        'form': Login(),
+        'url': 'auth:login'
+    }
     if request.POST:
         # takes in form submission and logs the user in if valid
         form = request.POST
@@ -78,9 +102,10 @@ def login(request):
             dj_login(request, user)
             return redirect(reverse('home:profile'))
         else:
-            return render(request, 'forms/login.html', {'form': Login(), 'message': 'invalid login'})
+            context.update({'errors': 'invalid login'})
+            return render(request, 'forms.html', context)
 
-    return render(request, 'forms/login.html', {'form': Login()})
+    return render(request, 'forms.html', context)
 
 
 @login_required
@@ -91,15 +116,36 @@ def logout(user):
 
 
 @login_required
-def input(request):
+def input_patron(request):
     context = {
-        'form': Input()
+        'form_title': 'input',
+        'form': InputPatron(),
+        'url': 'auth:input'
     }
     if request.POST:
-        form = Input(request.POST)
+        form = InputPatron(request.POST)
         if form.is_valid():
             patron = form.save()
             patron.regcode = gen_regcode()
             patron.save()
-            context.update({'message': 'input successful'})
-    return render(request, 'forms/input.html', context)
+            context.update({'errors': 'input successful'})
+    return render(request, 'forms.html', context)
+
+
+def update(request):
+    context = {
+        'form_title': 'update',
+        'form': Update(),
+        'url': 'auth:update'
+    }
+    # Unable to find logged in user FIX
+    if request.POST:
+        form = request.POST
+        account = Account.objects.filter()
+        user = get_user_model()
+        user.display_name = form['display_name']
+        user.email = form['email']
+        user.phone = form['phone']
+        user.save()
+        return redirect(reverse('home:profile'))
+    return render(request, 'forms.html', context)

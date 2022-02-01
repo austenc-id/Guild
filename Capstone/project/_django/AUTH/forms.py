@@ -25,8 +25,14 @@ class Login(ModelForm):
         fields = ['username', 'password']
 
 
-class Input(ModelForm):
+class InputPatron(ModelForm):
     # input patron data
     class Meta:
         model = Patron
         fields = ['first_name', 'last_name', 'donation', 'unlimited']
+
+
+class Update(ModelForm):
+    class Meta:
+        model = Account
+        fields = ['display_name', 'email', 'phone']
