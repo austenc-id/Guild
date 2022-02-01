@@ -25,7 +25,6 @@ def register(request):
         patron = Patron.objects.filter(regcode=regcode)
         if patron:
             patron = patron[0]
-        # print(patron)
             if patron.registered == False:
                 context.update({
                     'form': Verified(data={
@@ -44,7 +43,7 @@ def register(request):
             return render(request, 'forms.html', context)
 
     return render(request, 'forms.html', context)
-# another split??
+#! another split??
 
 
 def complete(request):
@@ -138,7 +137,7 @@ def update(request):
         'form': Update(),
         'url': 'auth:update'
     }
-    # Unable to find logged in user FIX
+    #! Unable to find logged in user FIX
     if request.POST:
         form = request.POST
         account = Account.objects.filter()
