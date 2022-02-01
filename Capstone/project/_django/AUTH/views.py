@@ -8,7 +8,7 @@ from django.contrib.auth import (
 )
 from django.contrib.auth.decorators import login_required
 from .forms import *
-from .data import *
+from .utils import generators as gen
 from .models import *
 # Create your views here.
 
@@ -126,7 +126,7 @@ def input_patron(request):
         form = InputPatron(request.POST)
         if form.is_valid():
             patron = form.save()
-            patron.regcode = gen_regcode()
+            patron.regcode = gen.regcode()
             patron.save()
             context.update({'errors': 'input successful'})
     return render(request, 'forms.html', context)

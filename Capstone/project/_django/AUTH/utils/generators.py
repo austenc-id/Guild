@@ -1,4 +1,4 @@
-def gen_regcode():
+def regcode():
     from random import randint
     regcode = ''
     while len(regcode) < 4:
