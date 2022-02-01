@@ -2,7 +2,7 @@
 from django.shortcuts import render, redirect, reverse
 from django.contrib.auth import (
     get_user_model,
-    logout as dj_logout,
+    logout as end,
     authenticate as auth,
     login as dj_login,
 )
@@ -112,8 +112,8 @@ def login(request):
 @login_required
 def logout(user):
     # bye felicia
-    dj_logout(user)
-    return redirect(reverse('home:page'))
+    end(user)
+    return redirect(reverse('home:index'))
 
 
 @login_required

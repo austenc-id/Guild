@@ -9,6 +9,10 @@ class PatronAdmin(admin.ModelAdmin):
                     "donation", "registered", "unlimited")
 
 
+class AccountAdmin(admin.ModelAdmin):
+    list_display = ("username", "first_name", "last_name")
+
+
 # Register your models here:
-admin.site.register(Account)
+admin.site.register(Account, AccountAdmin)
 admin.site.register(Patron, PatronAdmin)
