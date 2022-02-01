@@ -38,7 +38,7 @@ def register(request):
         else:
             context.update({
                 'form': Register(),
-                'errors': 'not found',
+                'message': 'not found',
             })
             # return render(request, 'forms.html', context)
 
@@ -48,9 +48,7 @@ def register(request):
 
 def complete(request):
     if request.POST:
-        context = {
-
-        }
+        context = {}
         # takes in form submission and registers the user if valid
         form = Verified(request.POST)
         # ! Overide clean method of forms or save method of models
@@ -74,7 +72,7 @@ def complete(request):
                 'form_title': 'login',
                 'form': Login(),
                 'url': 'auth:login',
-                'errors': 'registration complete'
+                'message': 'registration complete'
             })
             # return render(request, 'forms.html', context)
 
@@ -84,7 +82,7 @@ def complete(request):
                 'form_title': 'register',
                 'form': Verified(),
                 'url': 'auth:complete',
-                'errors': form.errors.values()
+                'message': form.errors.values()
 
             })
         return render(request, 'forms.html', context)
@@ -105,7 +103,7 @@ def login(request):
             dj_login(request, user)
             return redirect(reverse('home:profile'))
         else:
-            context.update({'errors': 'invalid login'})
+            context.update({'message': 'invalid login'})
             # return render(request, 'forms.html', context)
 
     return render(request, 'forms.html', context)
@@ -131,7 +129,7 @@ def input_patron(request):
             patron = form.save()
             patron.regcode = gen.digit_code(4)
             patron.save()
-            context.update({'errors': 'input successful'})
+            context.update({'message': 'input successful'})
     return render(request, 'forms.html', context)
 
 

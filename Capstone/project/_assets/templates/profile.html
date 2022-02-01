@@ -12,7 +12,8 @@
                 </a>
             </h1>
             <div class="d-flex flex-column align-items-start">
-                <span>{{user.first_name.title}} {{user.last_name.title}}</span>
+                <span>{{user.first_name.title}}
+                    {{user.last_name.title}}</span>
                 <span class="d-flex align-items-center gap-2">
                     email: {{user.email}}
                     <a href="#">
@@ -29,7 +30,9 @@
                 <!-- only render wallet if user is patron -->
                 {% if user.is_superuser %}
                     <button class="btn-dark">
-                        <a href="{% url 'auth:input' %}">Add Patron</a>
+                        <a href="{% url 'auth:input' %}">
+                            Add Patron
+                        </a>
                     </button>
                 {% else %}
                     {% if user.unlimited %}
