@@ -33,25 +33,28 @@ def register(request):
                     'url': 'auth:complete'
 
                 })
-                return render(request, 'forms.html', context)
+                # return render(request, 'forms.html', context)
 
         else:
             context.update({
                 'form': Register(),
                 'errors': 'not found',
             })
-            return render(request, 'forms.html', context)
+            # return render(request, 'forms.html', context)
 
     return render(request, 'forms.html', context)
 #! another split??
 
 
 def complete(request):
-    print('request stuff', request.POST)
-
     if request.POST:
+        context = {
+
+        }
         # takes in form submission and registers the user if valid
         form = Verified(request.POST)
+        # ! Overide clean method of forms or save method of models
+        # ! signals API?
         if form.is_valid():
             print(form.cleaned_data)
             user = form.save(commit=False)
@@ -63,27 +66,28 @@ def complete(request):
                 user.unlimited = True
             else:
                 user.wallet = 1 + (user.donation // 100)
+                # ! could be done in the Model
             user.save()
             patron.registered = True
             patron.save()
-            context = {
+            context.update({
                 'form_title': 'login',
                 'form': Login(),
                 'url': 'auth:login',
                 'errors': 'registration complete'
-            }
-            return render(request, 'forms.html', context)
+            })
+            # return render(request, 'forms.html', context)
 
         else:
             # invalid forms return the register template with errors
-            context = {
+            context.update({
                 'form_title': 'register',
                 'form': Verified(),
                 'url': 'auth:complete',
                 'errors': form.errors.values()
 
-            }
-            return render(request, 'forms.html', context)
+            })
+        return render(request, 'forms.html', context)
 
 
 def login(request):
@@ -102,7 +106,7 @@ def login(request):
             return redirect(reverse('home:profile'))
         else:
             context.update({'errors': 'invalid login'})
-            return render(request, 'forms.html', context)
+            # return render(request, 'forms.html', context)
 
     return render(request, 'forms.html', context)
 
@@ -125,23 +129,22 @@ def input_patron(request):
         form = InputPatron(request.POST)
         if form.is_valid():
             patron = form.save()
-            patron.regcode = gen.regcode()
+            patron.regcode = gen.digit_code(4)
             patron.save()
             context.update({'errors': 'input successful'})
     return render(request, 'forms.html', context)
 
 
+@login_required
 def update(request):
     context = {
         'form_title': 'update',
         'form': Update(),
         'url': 'auth:update'
     }
-    #! Unable to find logged in user FIX
     if request.POST:
         form = request.POST
-        account = Account.objects.filter()
-        user = get_user_model()
+        user = request.user
         user.display_name = form['display_name']
         user.email = form['email']
         user.phone = form['phone']

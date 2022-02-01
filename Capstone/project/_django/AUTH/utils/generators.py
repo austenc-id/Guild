@@ -1,7 +1,10 @@
-def regcode():
+# takes in an integer as the length and returns a random code
+
+
+def digit_code(length):
     from random import randint
-    regcode = ''
-    while len(regcode) < 4:
+    code = ''
+    while len(code) < length:
         digit = randint(0, 9)
-        regcode += str(digit)
-    return regcode
+        code += str(digit)
+    return code
