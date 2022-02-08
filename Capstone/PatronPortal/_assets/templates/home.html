@@ -29,11 +29,11 @@
           <!-- display navlinks based upon whether the
                     user is logged in or not -->
           {% if user.is_authenticated %} Welcome,
-          <a href="{% url 'home:profile' %}"> {{user.display_name}} </a>
-          <a href="{% url 'auth:logout' %}"> Logout </a>
+          <a href="{% url 'user:profile' %}"> {{user.display_name}} </a>
+          <a href="{% url 'user:logout' %}"> Logout </a>
           {% else %}
-          <a href="{% url 'auth:login' %}"> Login </a>
-          <a href="{% url 'auth:register' %}"> Register </a>
+          <a href="{% url 'user:login' %}"> Login </a>
+          <a href="{% url 'user:reg' %}"> Register </a>
           {% endif %}
         </span>
       </header>
@@ -45,10 +45,10 @@
         <!-- when a link is clicked the block will
                     replace links with form -->
         {% block forms %} {% if user.is_authenticated %}
-        <a href="{% url 'home:profile' %}"> Profile </a>
+        <a href="{% url 'user:profile' %}"> Profile </a>
         {% else %}
-        <a href="{% url 'auth:login' %}"> Login </a>
-        <a href="{% url 'auth:register' %}"> Register </a>
+        <a href="{% url 'user:login' %}"> Login </a>
+        <a href="{% url 'user:reg' %}"> Register </a>
         {% endif %} {% endblock %} {% endblock %}
       </main>
       <footer class="m-2 p-1 text-center">

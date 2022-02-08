@@ -31,6 +31,9 @@ main {
 footer {
   border-top: 2px solid var(--void);
 }
+li {
+  list-style: none;
+}
 a:any-link {
   color: var(--sand);
   text-decoration: none;
