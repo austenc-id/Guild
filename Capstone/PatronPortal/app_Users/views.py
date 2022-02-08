@@ -6,6 +6,7 @@ from django.contrib.auth import (
     authenticate as auth,
     login as dj_login,
 )
+from django.contrib.auth.decorators import login_required
 # models
 from .forms import *
 
@@ -43,8 +44,10 @@ def user_profile(REQ):
     return render(REQ, 'profile.html')
 
 
-def user_logout():
-    return
+@login_required
+def user_logout(user):
+    end(user)
+    return redirect(reverse('user:login'))
 
 
 def user_reg():
