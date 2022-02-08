@@ -72,9 +72,9 @@ def user_update(REQ):
         context.update({
             'new_username': new_username,
             'new_password': new_password,
+            # ! URL is not updating??
             'url': 'user:save'
         })
-
     return render(REQ, '_Users/update.html', context)
 
 
