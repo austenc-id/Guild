@@ -41,6 +41,6 @@ a:any-link {
 form {
   border: 2px solid var(--void);
 }
-.helptext {
+/* .helptext {
   font-size: 0;
-}
+} */

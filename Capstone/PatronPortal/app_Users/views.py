@@ -50,5 +50,38 @@ def user_logout(user):
     return redirect(reverse('user:login'))
 
 
+@login_required
+def user_update(REQ):
+    context = {
+        'form_title': 'update',
+        'url': 'user:update',
+        'form': Update(),
+    }
+    if REQ.POST:
+        form = REQ.POST
+        try:
+            form['username']
+            new_username = True
+        except:
+            new_username = False
+        try:
+            form['password']
+            new_password = True
+        except:
+            new_password = False
+        context.update({
+            'new_username': new_username,
+            'new_password': new_password,
+            'url': 'user:save'
+        })
+
+    return render(REQ, '_Users/update.html', context)
+
+
+@login_required
+def save_updates(REQ):
+    return
+
+
 def user_reg():
     return

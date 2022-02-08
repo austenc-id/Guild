@@ -4,12 +4,11 @@
     <h1>Profile</h1>
     <div class="col"></div>
     <div class="col-8">
-      <h1>
-        {{user.display_name}}
-        <!-- <a href="#">
-                    <i class="fas fa-edit"></i>
-                </a> -->
-      </h1>
+      <a href="{% url 'user:update' %}">
+        change login information
+        <i class="fas fa-edit"></i>
+      </a>
+      <h1>{{user.display_name}}</h1>
       <div class="d-flex flex-column align-items-start">
         <span>{{user.first_name.title}} {{user.last_name.title}}</span>
         <span class="d-flex align-items-center gap-2">

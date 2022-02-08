@@ -1,0 +1,57 @@
+{% extends '_home/index.html' %} {% block forms %}
+<div class="container">
+  <div class="row">
+    <h1>{{form_title.title}}</h1>
+    <div class="col"></div>
+    <div class="col">
+      {% if message %}
+      <h4>{{message}}</h4>
+      {% endif %}
+      <form
+        class="d-flex flex-column align-items-center p-3"
+        action="{% url url %}"
+        method="post"
+      >
+        {% csrf_token %}
+        <!--  -->
+        {% if new_username and new_password %}
+        <!--  -->
+        {{form}}
+        <label for="confirm-password"> Confirm New Password </label>
+        <input type="text" name="confirm-password" id="confirm-password" />
+        <!--  -->
+        {% elif new_username %}
+        <!--  -->
+        <label for="{{form.username.id_for_label}}">
+          {{form.username.label}}
+        </label>
+        {{form.username}}
+        <!--  -->
+        {% elif new_password %}
+        <!--  -->
+        <label for="{{form.password.id_for_label}}">
+          {{form.password.label}}
+        </label>
+        {{form.password}}
+        <label for="confirm-password"> Confirm New Password </label>
+        <input type="text" name="confirm-password" id="confirm-password" />
+        <!--  -->
+        {% else %}
+        <label for="username"
+          >update username
+          <input type="checkbox" name="username" id="username" />
+        </label>
+        <label for="password"
+          >update password
+          <input type="checkbox" name="password" id="password" />
+        </label>
+        {% endif %}
+
+        <button type="submit" class="btn-dark m-1">{{form_title}}</button>
+      </form>
+    </div>
+    <div class="col"></div>
+  </div>
+</div>
+
+{% endblock %}
