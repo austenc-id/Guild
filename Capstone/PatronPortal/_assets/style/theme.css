@@ -34,9 +34,11 @@ footer {
 li {
   list-style: none;
 }
-a:any-link {
+a:any-link,
+.pseudo-link {
   color: var(--sand);
   text-decoration: none;
+  cursor: pointer;
 }
 form {
   border: 2px solid var(--void);

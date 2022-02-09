@@ -55,33 +55,78 @@ def user_update(REQ):
     context = {
         'form_title': 'update',
         'url': 'user:update',
-        'form': Update(),
+        'form': Update(initial={'username': REQ.user.username}),
     }
     if REQ.POST:
         form = REQ.POST
-        try:
-            form['username']
-            new_username = True
-        except:
-            new_username = False
-        try:
-            form['password']
-            new_password = True
-        except:
-            new_password = False
-        context.update({
-            'new_username': new_username,
-            'new_password': new_password,
-            # ! URL is not updating??
-            'url': 'user:save'
-        })
+        print(form)
+        user = REQ.user
+        new_username = form['new-username']
+        new_password = form['new-password']
+        errors = []
+        if new_username != '':
+            existing = User.objects.filter(username=new_username)
+            if len(existing) == 0:
+                user.username = new_username
+            else:
+                error = 'Username taken. Try again.'
+                errors.append(error)
+        if new_password != '':
+            confirmation = form['confirm-password']
+            if new_password == confirmation:
+                user.set_password(new_password)
+                password_updated = True
+            else:
+                error = 'Passwords do not match. Try again.'
+                errors.append(error)
+        if len(errors) != 0:
+            context.update({'errors': errors})
+        else:
+            user.save()
+            if password_updated:
+                return redirect(reverse('user:login'))
+            else:
+                return redirect(reverse('user:profile'))
     return render(REQ, '_Users/update.html', context)
 
 
-@login_required
-def save_updates(REQ):
-    return
+def user_reg(REQ):
+    context = {
+        'form_title': 'register',
+        'url': 'user:reg',
+        'form': Register()
+    }
+    if REQ.POST:
+        req = REQ.POST
+        form = Register(req)
 
+        print(REQ.POST)
+        if form.is_valid():
+            # ! IMPLEMENT SIGNALS API TO RETRIEVE PATRON
+            # ! Need OneToOne fields User>Patron, User>Profile, Patron>User, Profile>User
+            # ! IMPLEMENT SIGNALS API TO RETRIEVE PATRON
+            # ! Need OneToOne fields User>Patron, User>Profile, Patron>User, Profile>User
+            # ! IMPLEMENT SIGNALS API TO RETRIEVE PATRON
+            # ! Need OneToOne fields User>Patron, User>Profile, Patron>User, Profile>User
+            # ! IMPLEMENT SIGNALS API TO RETRIEVE PATRON
+            # ! Need OneToOne fields User>Patron, User>Profile, Patron>User, Profile>User
+            # ! IMPLEMENT SIGNALS API TO RETRIEVE PATRON
+            # patron = Patron.objects.filter(regcode=req['regcode'])
+            # print(patron)
+            # if patron:
+            user = form.save(commit=False)
+            user.username = req['username']
+            user.set_password(req['password'])
+            user.save()
+            # ! IMPLEMENT SIGNALS API TO CREATE PROFILE
+            # ! Need OneToOne fields User>Patron, User>Profile, Patron>User, Profile>User
+            # ! IMPLEMENT SIGNALS API TO CREATE PROFILE
+            # ! Need OneToOne fields User>Patron, User>Profile, Patron>User, Profile>User
+            # ! IMPLEMENT SIGNALS API TO CREATE PROFILE
+            # ! Need OneToOne fields User>Patron, User>Profile, Patron>User, Profile>User
+            # ! IMPLEMENT SIGNALS API TO CREATE PROFILE
+            return redirect(reverse('user:login'))
 
-def user_reg():
-    return
+        else:
+            context.update({'errors': form.errors})
+    return render(REQ, 'forms.html', context)
