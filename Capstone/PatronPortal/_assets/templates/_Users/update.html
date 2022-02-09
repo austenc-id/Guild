@@ -1,0 +1,97 @@
+{% extends '_home/index.html' %} {% block forms %}
+<div class="container">
+  <div class="row">
+    <h1>{{form_title.title}}</h1>
+    <div class="col"></div>
+    <div class="col">
+      {% if message %}
+      <h4>{{message}}</h4>
+      {% endif %}
+      <!--  -->
+      {% if errors %}
+      <!--  -->
+      {% for error in errors %}
+      <h4>{{error}}</h4>
+      {% endfor %}
+      <!--  -->
+      {% endif %}
+      <form
+        class="d-flex flex-column align-items-center p-3"
+        action="{% url url %}"
+        method="post"
+      >
+        {% csrf_token %}
+        <!--  -->
+        <span class="pseudo-link" onclick="revealInput('new-username')">
+          update username
+        </span>
+        <label
+          for="new-username"
+          id="new-username-label"
+          class="visually-hidden"
+        >
+          New Username
+        </label>
+        <input
+          type="text"
+          name="new-username"
+          id="new-username"
+          class="visually-hidden"
+        />
+        <span
+          class="pseudo-link"
+          onclick="revealInput('new-password', confirm=true)"
+        >
+          update password
+        </span>
+        <label
+          for="new-password"
+          id="new-password-label"
+          class="visually-hidden"
+        >
+          New Password
+        </label>
+        <input
+          type="text"
+          name="new-password"
+          id="new-password"
+          class="visually-hidden"
+        />
+        <label
+          for="confirm-password"
+          id="confirm-label"
+          class="visually-hidden"
+        >
+          Confirm New Password
+        </label>
+        <input
+          type="text"
+          name="confirm-password"
+          id="confirm-password"
+          class="visually-hidden"
+        />
+        <button type="submit" class="btn-dark m-1">{{form_title}}</button>
+      </form>
+    </div>
+    <div class="col"></div>
+  </div>
+</div>
+<script>
+  function revealInput(field, confirm = false) {
+    console.log(field);
+    document.getElementById(field).classList.toggle("visually-hidden");
+    document
+      .getElementById(field + "-label")
+      .classList.toggle("visually-hidden");
+    if (confirm === true) {
+      document
+        .getElementById("confirm-password")
+        .classList.toggle("visually-hidden");
+      document
+        .getElementById("confirm-label")
+        .classList.toggle("visually-hidden");
+    }
+  }
+</script>
+
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends '_home/index.html' %} {% block profile %}
+<div class="container">
+  <div class="row">
+    <h1>Profile</h1>
+    <div class="col"></div>
+    <div class="col-8">
+      <a href="{% url 'user:update' %}">
+        change login information
+        <i class="fas fa-edit"></i>
+      </a>
+      <h1>{{user.display_name}}</h1>
+      <div class="d-flex flex-column align-items-start">
+        <span>{{user.first_name.title}} {{user.last_name.title}}</span>
+        <!-- <span class="d-flex align-items-center gap-2">
+          username: {{user.username}}
+          <a href="#">
+            <i class="fas fa-edit"></i>
+          </a>
+        </span> -->
+        <!-- only render wallet if user is patron -->
+      </div>
+
+      {% if user.is_superuser %}
+      <button class="btn-dark">
+        <a href="{% url 'patrons:new' %}"> Add Patron </a>
+      </button>
+      {% else %} {% if user.unlimited %}
+      <span>tokens: unlimited</span>
+      {% else %}
+      <span>tokens: {{user.wallet}}</span>
+      {% endif %} {% endif %}
+    </div>
+    <div class="col"></div>
+  </div>
+</div>
+
+{% endblock %}
