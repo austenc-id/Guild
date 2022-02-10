@@ -18,7 +18,10 @@
         action="{% url url %}"
         method="post"
       >
-        {% csrf_token %} {{form}}
+        {% csrf_token %}
+        <!--  -->
+        {{form}}
+        <!--  -->
         <button type="submit" class="btn-dark m-1">{{form_title}}</button>
       </form>
     </div>

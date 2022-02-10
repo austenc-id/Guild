@@ -22,5 +22,5 @@ urlpatterns = [
     # App URLs
     path('', include('app_Home.urls')),
     path('patrons/', include('app_Patrons.urls')),
-    path('user/', include('app_Users.urls'))
+    path('user/', include('app_Users.urls')),
 ]

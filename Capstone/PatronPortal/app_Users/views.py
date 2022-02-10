@@ -94,39 +94,25 @@ def user_reg(REQ):
     context = {
         'form_title': 'register',
         'url': 'user:reg',
-        'form': Register()
+        'form': Register(),
     }
     if REQ.POST:
         req = REQ.POST
         form = Register(req)
-
         print(REQ.POST)
         if form.is_valid():
-            # ! IMPLEMENT SIGNALS API TO RETRIEVE PATRON
-            # ! Need OneToOne fields User>Patron, User>Profile, Patron>User, Profile>User
-            # ! IMPLEMENT SIGNALS API TO RETRIEVE PATRON
-            # ! Need OneToOne fields User>Patron, User>Profile, Patron>User, Profile>User
-            # ! IMPLEMENT SIGNALS API TO RETRIEVE PATRON
-            # ! Need OneToOne fields User>Patron, User>Profile, Patron>User, Profile>User
-            # ! IMPLEMENT SIGNALS API TO RETRIEVE PATRON
-            # ! Need OneToOne fields User>Patron, User>Profile, Patron>User, Profile>User
-            # ! IMPLEMENT SIGNALS API TO RETRIEVE PATRON
-            # patron = Patron.objects.filter(regcode=req['regcode'])
-            # print(patron)
-            # if patron:
-            user = form.save(commit=False)
-            user.username = req['username']
-            user.set_password(req['password'])
-            user.save()
-            # ! IMPLEMENT SIGNALS API TO CREATE PROFILE
-            # ! Need OneToOne fields User>Patron, User>Profile, Patron>User, Profile>User
-            # ! IMPLEMENT SIGNALS API TO CREATE PROFILE
-            # ! Need OneToOne fields User>Patron, User>Profile, Patron>User, Profile>User
-            # ! IMPLEMENT SIGNALS API TO CREATE PROFILE
-            # ! Need OneToOne fields User>Patron, User>Profile, Patron>User, Profile>User
-            # ! IMPLEMENT SIGNALS API TO CREATE PROFILE
-            return redirect(reverse('user:login'))
+            from .utils.retrievers import get_patron
+            if req['regcode'] == '0000':
+                patron = True
+            else:
+                patron = get_patron(req['regcode'])
+                print(patron)
+            if patron:
+                new_user = form.save()
+                return redirect(reverse('user:login'))
+            else:
+                context.update({'message': 'invalid registration code'})
 
         else:
-            context.update({'errors': form.errors})
+            context.update({'errors': [form.errors.as_text()]})
     return render(REQ, 'forms.html', context)

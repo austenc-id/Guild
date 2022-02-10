@@ -11,19 +11,20 @@
       <h1>{{user.display_name}}</h1>
       <div class="d-flex flex-column align-items-start">
         <span>{{user.first_name.title}} {{user.last_name.title}}</span>
-        <!-- <span class="d-flex align-items-center gap-2">
-          username: {{user.username}}
-          <a href="#">
-            <i class="fas fa-edit"></i>
-          </a>
-        </span> -->
-        <!-- only render wallet if user is patron -->
+        <a href="{% url 'user:update_profile' %}">
+          update profile
+          <i class="fas fa-edit"></i>
+        </a>
       </div>
 
       {% if user.is_superuser %}
-      <button class="btn-dark">
-        <a href="{% url 'patrons:new' %}"> Add Patron </a>
-      </button>
+      <div class="d-flex flex-column align-items-center">
+        <a href="http://127.0.0.1:8000/admin/"> admin tools </a>
+        <a href="{% url 'patrons:view' %}"> View Patrons </a>
+        <button class="btn-dark">
+          <a href="{% url 'patrons:new' %}"> Add Patron </a>
+        </button>
+      </div>
       {% else %} {% if user.unlimited %}
       <span>tokens: unlimited</span>
       {% else %}
