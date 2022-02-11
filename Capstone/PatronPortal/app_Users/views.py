@@ -101,10 +101,11 @@ def user_reg(REQ):
         form = Register(req)
         print(REQ.POST)
         if form.is_valid():
-            from .utils.retrievers import get_patron
+            from .utils.retrievers import get_patron, get_patron_API
             if req['regcode'] == '0000':
                 patron = True
             else:
+                api_data = get_patron_API()
                 patron = get_patron(req['regcode'])
                 print(patron)
             if patron:

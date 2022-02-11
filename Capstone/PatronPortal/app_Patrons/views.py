@@ -18,9 +18,12 @@ def index(REQ):
 
 @login_required
 def view_patrons(REQ):
+    patrons = Patron.objects.all()
     context = {
-        'patrons': Patron.objects.all()
+        'patrons': patrons
     }
+    serialized = PatronSerializer(patrons[0]).instance.url
+    print(serialized)
     return render(REQ, '_patrons/list.html', context)
 
 
@@ -37,11 +40,11 @@ def new_patron(REQ):
         data = extract.dictionary(keys, req)
         regcode = gen.digit_code(4)
         data.update({'regcode': regcode})
-        ser = PatronSerializer(data=data)
+        ser = PatronSerializer(data=data, context={'request': REQ})
+        print(ser)
         if ser.is_valid():
-            valid = True
             ser.save()
+            return redirect(reverse('patrons:view'))
         else:
-            valid = ser.errors
-        return redirect(reverse('patrons:view'))
+            context.update({'errors': ser.errors})
     return render(REQ, 'forms.html', context)
