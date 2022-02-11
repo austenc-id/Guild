@@ -16,11 +16,21 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+# * Project API imports
+from rest_framework.routers import *
+from app_Patrons.viewsets import PatronAPIViewset
+
+# * API router and app registartions
+router = DefaultRouter()
+router.register(r'patrons', PatronAPIViewset)
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('rest_framework.urls')),
-    # App URLs
+    # * API urls
+    path('api/', include(router.urls)),
+    # * App URLs
     path('', include('app_Home.urls')),
     path('patrons/', include('app_Patrons.urls')),
     path('user/', include('app_Users.urls')),
+
 ]
