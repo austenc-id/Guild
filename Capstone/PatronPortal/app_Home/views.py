@@ -4,4 +4,5 @@ from django.shortcuts import render
 
 
 def index(request):
+    # * Render the homepage on inital load
     return render(request, '_home/index.html')
