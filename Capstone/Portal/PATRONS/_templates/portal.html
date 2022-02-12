@@ -1,4 +1,11 @@
-{% extends 'index.html' %} {% block forms %}
-<a href="{% url 'patrons:new' %}">new patron</a>
-<a href="{% url 'patrons:view' %}">view patrons</a>
+{% extends 'index.html' %}
+<!--  -->
+{% block forms %}
+<!--  -->
+{% if user.is_superuser %}
+<a href="{% url 'portal:new_patron' %}">new patron</a>
+
+{% endif %}
+<a href="{% url 'portal:user_profile' %}">profile</a>
+<a href="{% url 'portal:view_patrons' %}">view patrons</a>
 {% endblock %}

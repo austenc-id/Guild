@@ -1,9 +1,15 @@
-{% extends '_home/index.html' %} {% block profile %}
+{% extends 'index.html' %}
+<!--  -->
+{% block profile %}
 <h1>Patrons</h1>
-{% for patron in patrons %} {% if patron.unlimited %}
-<li>{{patron.first_name}} {{patron.last_name}}: ${{patron.donation}} &diam;</li>
-{% else %}
-<li>{{patron.first_name}} {{patron.last_name}}: ${{patron.donation}}</li>
-{% endif %} {% endfor %}
-<a href="{% url 'patrons:new' %}">new patron</a>
+{% for patron in patrons %}
+<!--  -->
+<li>{{patron.legal_name.title}}</li>
+
+{% endfor %}
+<!--  -->
+{% if user.is_superuser %}
+<a href="{% url 'portal:new_patron' %}">new patron</a>
+{% endif %}
+<!--  -->
 {% endblock %}
