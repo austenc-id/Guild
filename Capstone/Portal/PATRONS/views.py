@@ -156,7 +156,7 @@ def update_profile(REQ):
 
 @login_required
 def view_patrons(REQ):
-    patrons = Patron.objects.all()
+    patrons = Patron.objects.all().order_by('-donation')
     context = {
         'patrons': patrons
     }

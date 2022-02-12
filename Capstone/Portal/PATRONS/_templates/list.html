@@ -4,8 +4,14 @@
 <h1>Patrons</h1>
 {% for patron in patrons %}
 <!--  -->
+{% if patron.unlimited %}
+<li>&diam; {{patron.legal_name.title}}</li>
+
+{% else %}
 <li>{{patron.legal_name.title}}</li>
 
+{% endif %}
+<!--  -->
 {% endfor %}
 <!--  -->
 {% if user.is_superuser %}

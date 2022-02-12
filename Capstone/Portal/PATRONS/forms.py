@@ -11,7 +11,7 @@ class NewPatron(ModelForm):
     # * input patron data
     class Meta:
         model = Patron
-        fields = ['first_name', 'last_name', 'email', 'donation', 'unlimited']
+        fields = ['first_name', 'last_name', 'donation', 'unlimited']
 
     def save(self, commit=True):
         new_patron = super(NewPatron, self).save(commit=False)

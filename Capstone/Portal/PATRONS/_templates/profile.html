@@ -4,13 +4,14 @@
     <div class="col">
       <a href="{% url 'portal:home' %}">
         <i class="fas fa-home"></i>
+        Portal Home
       </a>
     </div>
     <div class="col-8">
       <h1>Profile</h1>
+
       <div class="d-flex flex-column align-items-center">
         <span>{{user.first_name.title}} {{user.last_name.title}}</span>
-        <span>{{user.email}}</span>
         {% if user.is_superuser %}
         <a href="http://127.0.0.1:8000/admin/"> admin tools </a>
         {% else %}
@@ -22,14 +23,20 @@
         {% endif %}
         <!--  -->
         {% endif %}
-        <a href="{% url 'portal:update_login' %}">
-          change login information
-          <i class="fas fa-edit"></i>
-        </a>
-        <a href="{% url 'portal:update_profile' %}">
-          update profile information
-          <i class="fas fa-edit"></i>
-        </a>
+        <div class="row">
+          <div class="col d-flex flex-column align-items-center">
+            <h6><u>account information</u></h6>
+            <span>{{user.username}}</span>
+            <a href="{% url 'portal:update_login' %}">
+              change login information
+            </a>
+          </div>
+          <div class="col d-flex flex-column align-items-center">
+            <h6><u>user profile</u></h6>
+            <span>{{user.email}}</span>
+            <a href="{% url 'portal:update_profile' %}"> update profile </a>
+          </div>
+        </div>
       </div>
     </div>
     <div class="col"></div>

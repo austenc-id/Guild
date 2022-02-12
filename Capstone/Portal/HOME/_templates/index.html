@@ -1,7 +1,10 @@
 {% extends 'base.html' %} {% block index %}
 <div class="content m-2 p-4">
   <header class="d-flex align-items-center justify-content-between">
-    <h1>Atlas Electronica</h1>
+    <h1>
+      <a href="{% url 'home:index' %}" class="home-link"> Atlas Electronica </a>
+    </h1>
+
     <span class="d-flex align-items-center gap-2">
       <!-- display navlinks based upon whether the
                 user is logged in or not -->
