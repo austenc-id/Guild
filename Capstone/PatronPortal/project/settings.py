@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     # project apps
     'app_Home',
     'app_Patrons',
+    'app_Profiles',
     'app_Users',
 ]
 

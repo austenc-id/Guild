@@ -5,7 +5,7 @@ from django.db.models import *
 
 
 class Patron(Model):
-    url = CharField(max_length=48)
+    # patron_url = CharField(max_length=48)
     first_name = CharField(max_length=12)
     last_name = CharField(max_length=12)
     regcode = CharField(max_length=4, unique=True)

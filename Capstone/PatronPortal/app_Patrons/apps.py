@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class AppPatronsConfig(AppConfig):
+class PatronsConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
     name = 'app_Patrons'

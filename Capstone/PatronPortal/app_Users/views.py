@@ -35,6 +35,7 @@ def user_login(REQ):
         if user != None:
             dj_login(REQ, user)
             return redirect(reverse('user:profile'))
+            # return redirect(reverse('user_profile:view'))
         else:
             context.update({'message': 'invalid login'})
     return render(REQ, 'forms.html', context)
@@ -104,12 +105,14 @@ def user_reg(REQ):
             from .utils.retrievers import get_patron, get_patron_API
             if req['regcode'] == '0000':
                 patron = True
+                testcode = gen.digit_code(4)
             else:
-                api_data = get_patron_API()
                 patron = get_patron(req['regcode'])
+                testcode = None
                 print(patron)
             if patron:
-                new_user = form.save()
+                new_user = form.save(testcode)
+
                 return redirect(reverse('user:login'))
             else:
                 context.update({'message': 'invalid registration code'})

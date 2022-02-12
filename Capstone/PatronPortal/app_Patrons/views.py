@@ -22,8 +22,6 @@ def view_patrons(REQ):
     context = {
         'patrons': patrons
     }
-    serialized = PatronSerializer(patrons[0]).instance.url
-    print(serialized)
     return render(REQ, '_patrons/list.html', context)
 
 

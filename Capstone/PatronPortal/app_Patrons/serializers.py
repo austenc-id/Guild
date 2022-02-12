@@ -13,5 +13,5 @@ class PatronSerializer(HyperlinkedModelSerializer):
         #           'regcode', 'donation', 'unlimited', 'registered']
         fields = '__all__'
         extra_kwargs = {
-            # 'url': {'view_name': 'patron-detail', 'lookup_field': 'regcode'}
+            'url': {'view_name': 'patron-detail'}
         }
