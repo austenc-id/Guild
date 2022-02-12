@@ -1,0 +1,15 @@
+{% extends 'index.html' %}
+<!--  -->
+{% block profile %}
+<h1>Patrons</h1>
+{% for patron in patrons %}
+<!--  -->
+<li>{{patron.legal_name.title}}</li>
+
+{% endfor %}
+<!--  -->
+{% if user.is_superuser %}
+<a href="{% url 'portal:new_patron' %}">new patron</a>
+{% endif %}
+<!--  -->
+{% endblock %}
