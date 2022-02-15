@@ -46,25 +46,25 @@ class Register(ModelForm):
 
     def save(self, commit=True, patron=False):
         if patron:
-            if patron != True:
-                new_user = super(Register, self).save(commit=False)
-                new_user.user_id = gen.digit_code(6)
-                new_user.username = self.cleaned_data['username']
-                new_user.set_password(self.cleaned_data['password'])
-                new_user.regcode = self.cleaned_data['regcode']
-                new_user.first_name = patron.first_name
-                new_user.last_name = patron.last_name
-                new_user.donation = patron.donation
-                new_user.tokens = 1 + (patron.donation // 25)
-                try:
-                    new_user.email = patron.email
-                except:
-                    pass
-        if commit:
-            new_user.save()
-            patron.registered = True
-            patron.save()
-        return new_user
+            new_user = super(Register, self).save(commit=False)
+            new_user.user_id = gen.digit_code(6)
+            new_user.username = self.cleaned_data['username']
+            new_user.set_password(self.cleaned_data['password'])
+            new_user.regcode = self.cleaned_data['regcode']
+            new_user.first_name = patron.first_name
+            new_user.last_name = patron.last_name
+            new_user.donation = patron.donation
+            new_user.tokens = 1 + (patron.donation // 25)
+            try:
+                new_user.email = patron.email
+            except:
+                pass
+            if commit:
+                new_user.save()
+                patron.registered = True
+                patron.save()
+            return new_user
+        return None
 
 
 class UpdateProfile(ModelForm):

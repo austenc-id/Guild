@@ -32,17 +32,11 @@ def user_register(REQ):
         req = REQ.POST
         form = Register(req)
         print(REQ.POST)
-        TEST_CODES = ['0000', '0001', '0002', '0003',
-                      '0004', '0005', '0006', '0007', '0008', '0009', ]
         if form.is_valid():
-            if req['regcode'] in TEST_CODES:
-                patron = True
-            else:
-                patron = ret.get_patron(req['regcode'])
-                print(patron)
+            patron = ret.get_patron(req['regcode'])
+            print(patron)
             if patron:
                 new_user = form.save(patron=patron)
-
                 return redirect(reverse('portal:login'))
             else:
                 context.update({'message': 'invalid registration code'})
