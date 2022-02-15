@@ -1,6 +1,8 @@
 from django.db.models import *
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth import get_user_model
+from colorful.fields import RGBColorField as ColorField
+
 from utils import generators as gen
 
 
@@ -25,6 +27,9 @@ class User(AbstractUser):
     user_id = CharField(max_length=6)
     username = CharField(max_length=12, unique=True)
     password = CharField(max_length=88)
+    favorite_color = ColorField(default='#000000')
+    use_favorite_color = BooleanField(
+        default=False, help_text='would you like to set your favorite color as the default link color?')
     regcode = CharField(max_length=4, unique=True)
     donation = DecimalField(default=0, max_digits=8, decimal_places=2)
     tokens = IntegerField(default=0)

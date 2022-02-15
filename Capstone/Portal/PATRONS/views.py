@@ -173,3 +173,17 @@ def new_patron(REQ):
                 context.update({'errors': ser.errors.as_text()})
         return render(REQ, 'forms.html', context)
     return redirect(reverse('portal:home'))
+
+
+def toggle_color(REQ):
+    context = {
+        'form_title': 'toggle favorite color',
+        'url': 'portal:toggle_color',
+        'form': ToggleFavoriteColor(initial={'use_favorite_color': REQ.user.use_favorite_color}),
+    }
+    if REQ.POST:
+        form = ToggleFavoriteColor(REQ.POST, instance=REQ.user)
+        if form.is_valid():
+            form.save()
+            return redirect(reverse('portal:user_profile'))
+    return render(REQ, 'forms.html', context)

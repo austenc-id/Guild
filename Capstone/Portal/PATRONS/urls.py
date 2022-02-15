@@ -13,4 +13,5 @@ urlpatterns = [
     path('patrons/view', view_patrons, name='view_patrons'),
     path('patrons/profile/', user_profile, name='user_profile'),
     path('patrons/profile/update', update_profile, name='update_profile'),
+    path('patrons/toggle/color', toggle_color, name='toggle_color'),
 ]

@@ -70,4 +70,11 @@ class Register(ModelForm):
 class UpdateProfile(ModelForm):
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'email']
+        fields = ['first_name', 'last_name',
+                  'favorite_color', 'use_favorite_color', 'email']
+
+
+class ToggleFavoriteColor(ModelForm):
+    class Meta:
+        model = User
+        fields = ['use_favorite_color']
