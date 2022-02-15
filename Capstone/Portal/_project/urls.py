@@ -22,4 +22,5 @@ urlpatterns = [
     # * App URLs
     path('', include('HOME.urls')),
     path('portal/', include('PATRONS.urls')),
+    path('relay/', include('RELAY.urls')),
 ]

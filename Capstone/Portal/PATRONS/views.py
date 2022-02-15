@@ -8,7 +8,6 @@ from django.contrib.auth.decorators import login_required
 # app forms and serializers
 from .forms import *
 from .models import *
-from .serializers import *
 # custom utilities
 from utils import (
     generators as gen,

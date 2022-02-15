@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # third party apps
     'rest_framework',
+    'colorful',
     # project apps
     'HOME',
     'PATRONS',
@@ -132,4 +133,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Additional Settings:
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 STATICFILES_DIRS = [BASE_DIR / '_assets/_style']
+STATIC_ROOT = BASE_DIR / '_assets/_root'
 AUTH_USER_MODEL = 'PATRONS.User'
