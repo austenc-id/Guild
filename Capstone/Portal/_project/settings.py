@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'rest_framework',
     # project apps
     'HOME',
-    'PATRONS'
+    'PATRONS',
+    'RELAY'
 ]
 
 MIDDLEWARE = [
