@@ -35,13 +35,10 @@
     {% endblock %}
     <script>
       const useColor = document.getElementById("use-color").innerText;
-      console.log(useColor);
       if (useColor === "True") {
         const color = document.getElementById("fav-color").innerText;
-        console.log(color);
         const links = document.getElementsByTagName("a");
         setColors(links, color);
-        console.log(links);
       }
       function setColors(elements, color) {
         for (let i = 0; i < elements.length; i++) {

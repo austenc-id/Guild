@@ -46,6 +46,8 @@ a:any-link,
 form {
   border: 2px solid var(--void);
 }
-/* .helptext {
-  font-size: 0;
-} */
+input,
+select {
+  width: 50%;
+  border-radius: 2%;
+}
