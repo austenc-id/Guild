@@ -1,7 +1,5 @@
 # Project Overview
 
-<!-- DATA TYPES, sitebuiler >> JSONField and/or many CharFields ??-->
-
 ## Description
 
 > The Patron Portal will be a place for friends and family who have financially supported me through my educational journey to login and request web-development services in exchange for tokens that will be primarily assigned based upon donation amount.
