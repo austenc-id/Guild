@@ -32,7 +32,10 @@
     {% endif %} {% endblock %} {% endblock %}
   </main>
   <footer class="m-2 p-1 text-center">
+    {% if user.is_authenticated %}
     <a href="{% url 'portal:toggle_color' %}">toggle favorite color</a>
+
+    {% endif %}
 
     <h6>&copy;2022 Austen C. Myers</h6>
   </footer>
