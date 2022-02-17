@@ -18,7 +18,9 @@ from utils import (
 
 
 def portal(REQ):
-    return render(REQ, 'portal.html')
+    if REQ.user.is_authenticated:
+        return render(REQ, 'profile.html')
+    return redirect(reverse('portal:login'))
 
 
 def user_register(REQ):
@@ -135,6 +137,8 @@ def update_profile(REQ):
         'form': UpdateProfile(initial={
             'first_name': user.first_name,
             'last_name': user.last_name,
+            'favorite_color': user.favorite_color,
+            'use_favorite_color': user.use_favorite_color,
             'email': user.email})
     }
     if REQ.POST:

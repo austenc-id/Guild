@@ -3,6 +3,6 @@ from django.shortcuts import render
 # Create your views here.
 
 
-def index(request):
+def index(REQ):
     # * Render the homepage on inital load
-    return render(request, 'index.html')
+    return render(REQ, 'index.html')
