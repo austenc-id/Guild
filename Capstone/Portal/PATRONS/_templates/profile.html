@@ -1,15 +1,9 @@
 {% extends 'index.html' %} {% block profile %}
 <div class="container">
-  <div class="row">
-    <div class="col">
-      <a href="{% url 'portal:home' %}">
-        <i class="fas fa-home"></i>
-        Portal Home
-      </a>
-    </div>
-    <div class="col-8">
+  <div class="row text-center">
+    <div class="col-xl"></div>
+    <div id="profile" class="col-xl-9 border-b1-void">
       <h1>Profile</h1>
-
       <div class="d-flex flex-column align-items-center">
         <span>{{user.first_name.title}} {{user.last_name.title}}</span>
         {% if user.unlimited %}
@@ -18,28 +12,51 @@
         <span>tokens: {{user.tokens}}</span>
         <!--  -->
         {% endif %}
-        <div class="row">
-          <div class="col d-flex flex-column align-items-center">
-            <h6><u>account information</u></h6>
-            <span>{{user.username}}</span>
-          </div>
-          <div class="col d-flex flex-column align-items-center">
-            <h6><u>user profile</u></h6>
-            <span>{{user.email}}</span>
+        <div class="container">
+          <div class="row">
+            <div class="col-md d-flex flex-column align-items-center">
+              <h6><u>account information</u></h6>
+              <span>username: {{user.username}}</span>
+            </div>
+            <div class="col-md d-flex flex-column align-items-center">
+              <h6><u>user profile</u></h6>
+              <span>email: {{user.email}}</span>
+            </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="col d-flex flex-column align-items-start">
-      <h3>actions</h3>
-      {% if user.is_superuser %}
-      <a href="http://127.0.0.1:1994/admin/">admin tools</a>
-      <a href="{% url 'portal:new_patron' %}">new patron</a>
-      {% endif %}
-      <a href="{% url 'portal:view_patrons' %}">view patrons</a>
-      <a href="{% url 'portal:update_login' %}">update login</a>
-      <a href="{% url 'relay:invoke' %}">new invocation</a>
-      <a href="{% url 'portal:update_profile' %}">update profile</a>
+    <div class="col-xl"></div>
+    <div class="d-flex flex-column align-items-center pt-2">
+      <h3>Actions</h3>
+      <div id="action-bar" class="row">
+        {% if user.is_superuser %}
+        <div class="col">
+          <button class="btn-dark w-100">
+            <a href="http://127.0.0.1:1994/admin/">admin tools</a>
+          </button>
+          <button class="btn-dark w-100">
+            <a href="{% url 'portal:new_patron' %}">new patron</a>
+          </button>
+        </div>
+        {% endif %}
+        <div class="col">
+          <button class="btn-dark w-100">
+            <a href="{% url 'relay:invoke' %}">new invocation</a>
+          </button>
+          <button class="btn-dark w-100">
+            <a href="{% url 'portal:view_patrons' %}">view patrons</a>
+          </button>
+        </div>
+        <div class="col">
+          <button class="btn-dark w-100">
+            <a href="{% url 'portal:update_profile' %}"> update profile </a>
+          </button>
+          <button class="btn-dark w-100">
+            <a href="{% url 'portal:update_login' %}">update login</a>
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </div>

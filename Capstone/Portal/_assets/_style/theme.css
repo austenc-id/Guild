@@ -8,46 +8,66 @@
   --land: #642805;
   --grass: #078d12;
   --forest: #06690e;
+  --rock: #8e8f4d;
   --stone: #b6c8d8;
   --acme: "Acme", sans-serif;
 }
-
-body {
-  background-color: var(--void);
-  font-family: var(--acme);
+#block-index {
+  min-height: 96vh;
 }
-.content {
-  background-color: var(--ocean);
-  color: var(--stone);
-  min-height: 97vh;
-}
-header {
-  border-bottom: 2px solid var(--void);
-}
-main {
-  min-height: 70vh;
-  background-color: var(--wave);
-}
-footer {
-  border-top: 2px solid var(--void);
+#main {
+  min-height: 65vh;
 }
 li {
   list-style: none;
 }
 a:any-link,
 .pseudo-link {
-  color: var(--sand);
+  width: fit-content;
   text-decoration: none;
   cursor: pointer;
 }
-.home-link {
-  color: var(--stone) !important;
+a:hover {
+  background-color: var(--void);
+  border-radius: 40%;
+  color: var(--forest);
 }
-form {
+.bg-void {
+  background-color: var(--void);
+}
+.bg-ocean {
+  background-color: var(--ocean);
+}
+.bg-wave {
+  background-color: var(--wave);
+}
+.text-stone {
+  color: var(--stone);
+}
+.text-rock {
+  color: var(--rock);
+}
+.text-sand {
+  color: var(--sand);
+}
+.border-b2-void {
+  border-bottom: 2px solid var(--void);
+}
+.border-b1-void {
+  border-bottom: 1px solid var(--void);
+}
+.border-t2-void {
+  border-top: 2px solid var(--void);
+}
+.border-2-void {
   border: 2px solid var(--void);
 }
+.font-acme {
+  font-family: var(--acme);
+}
+
 input,
 select {
-  width: 50%;
+  width: 90%;
   border-radius: 2%;
 }
