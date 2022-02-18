@@ -1,20 +1,13 @@
-from django.shortcuts import render, redirect, reverse
-from django.contrib.auth import (
-    authenticate as auth,
-    login as dj_login,
-    logout as end,
-)
+from django.shortcuts import render, redirect
+from django.urls import reverse
+from django.contrib.auth import (authenticate as auth, login as login, logout as end)
 from django.contrib.auth.decorators import login_required
 # app forms and serializers
 from .forms import *
 from .models import *
 # custom utilities
-from utils import (
-    generators as gen,
-    extractors as extract,
-    retrievers as ret,
-)
-# Create your views here.
+from utils.extractors import *
+from utils.retrievers import *
 
 
 def portal(REQ):
@@ -30,18 +23,14 @@ def user_register(REQ):
         'form': Register(),
     }
     if REQ.POST:
-        req = REQ.POST
-        form = Register(req)
-        print(REQ.POST)
+        form = Register(REQ.POST)
         if form.is_valid():
-            patron = ret.get_patron(req['regcode'])
-            print(patron)
+            patron = get_patron(REQ.POST['regcode'])
             if patron:
                 new_user = form.save(patron=patron)
                 return redirect(reverse('portal:login'))
             else:
                 context.update({'message': 'invalid registration code'})
-
         else:
             context.update({'errors': [form.errors.as_text()]})
     return render(REQ, 'forms.html', context)
@@ -55,13 +44,13 @@ def user_login(REQ):
     }
     if REQ.POST:
         # takes in form submission and logs the user in if valid
-        req = REQ.POST
         keys = ['username', 'password']
-        data = extract.dictionary(keys, req, return_list=True)
+        data = dictionary(keys, REQ.POST, return_list=True)
         user = auth(
-            REQ, username=data[0], password=data[1])
+            REQ, username=data[0], password=data[1]
+            )
         if user != None:
-            dj_login(REQ, user)
+            login(REQ, user)
             user.login_count += 1
             user.save()
             return redirect(reverse('portal:user_profile'))
@@ -78,27 +67,23 @@ def update_login(REQ):
         'form': UpdateLogin(initial={'username': REQ.user.username}),
     }
     if REQ.POST:
-        form = REQ.POST
-        print(form)
         user = REQ.user
-        new_username = form['new-username']
-        new_password = form['new-password']
+        new_username = REQ.POST['new-username']
+        new_password = REQ.POST['new-password']
         errors = []
         if new_username != '':
             existing = User.objects.filter(username=new_username)
             if len(existing) == 0:
                 user.username = new_username
             else:
-                error = 'Username taken. Try again.'
-                errors.append(error)
+                errors.append('Username taken. Try again.')
         if new_password != '':
-            confirmation = form['confirm-password']
+            confirmation = REQ.POST['confirm-password']
             if new_password == confirmation:
                 user.set_password(new_password)
                 password_updated = True
             else:
-                error = 'Passwords do not match. Try again.'
-                errors.append(error)
+                errors.append('Passwords do not match. Try again.')
         else:
             password_updated = False
         if len(errors) != 0:
@@ -153,11 +138,7 @@ def update_profile(REQ):
 
 @login_required
 def view_patrons(REQ):
-    patrons = Patron.objects.all().order_by('-donation')
-    context = {
-        'patrons': patrons
-    }
-    return render(REQ, 'list.html', context)
+    return render(REQ, 'list.html', {'patrons': Patron.objects.all().order_by('-donation')})
 
 
 @login_required
@@ -174,7 +155,7 @@ def new_patron(REQ):
                 form.save()
                 return redirect(reverse('portal:view_patrons'))
             else:
-                context.update({'errors': ser.errors.as_text()})
+                context.update()
         return render(REQ, 'forms.html', context)
     return redirect(reverse('portal:home'))
 

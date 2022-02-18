@@ -1,9 +1,5 @@
 from django.forms import *
-from utils import (
-    generators as gen,
-    extractors as extract,
-    retrievers as ret,
-)
+from utils.generators import *
 from .models import *
 
 
@@ -15,7 +11,7 @@ class NewPatron(ModelForm):
 
     def save(self, commit=True):
         new_patron = super(NewPatron, self).save(commit=False)
-        new_patron.regcode = gen.digit_code(4)
+        new_patron.regcode = digit_code(4)
         if commit:
             new_patron.save()
         return new_patron
@@ -47,7 +43,7 @@ class Register(ModelForm):
     def save(self, commit=True, patron=False):
         if patron:
             new_user = super(Register, self).save(commit=False)
-            new_user.user_id = gen.digit_code(6)
+            new_user.user_id = digit_code(6)
             new_user.username = self.cleaned_data['username']
             new_user.set_password(self.cleaned_data['password'])
             new_user.regcode = self.cleaned_data['regcode']
@@ -70,8 +66,7 @@ class Register(ModelForm):
 class UpdateProfile(ModelForm):
     class Meta:
         model = User
-        fields = ['first_name', 'last_name',
-                  'favorite_color', 'use_favorite_color', 'email']
+        fields = ['first_name', 'last_name', 'favorite_color', 'use_favorite_color', 'email']
 
 
 class ToggleFavoriteColor(ModelForm):

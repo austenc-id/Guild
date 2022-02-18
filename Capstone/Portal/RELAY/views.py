@@ -3,14 +3,6 @@ from django.contrib.auth.decorators import login_required
 # app forms and serializers
 from .forms import *
 from .models import *
-# custom utilities
-from utils import (
-    generators as gen,
-    extractors as extract,
-    retrievers as ret,
-)
-
-# Create your views here.
 
 
 @login_required
@@ -21,7 +13,6 @@ def invoke(REQ):
         'url': 'relay:invoke'
     }
     if REQ.POST:
-        print(REQ.POST)
         form = InvocationForm(REQ.POST)
         if form.is_valid():
             form.save()

@@ -22,18 +22,18 @@
     <title>Atlas Electronica</title>
   </head>
   <body>
-    {% if user.is_authenticated %}
-    <span class="visually-hidden" id="fav-color">{{user.favorite_color}}</span>
-    <span class="visually-hidden" id="use-color"
-      >{{user.use_favorite_color}}</span
-    >
-    <!--  -->
-    {% endif %}
-    <!--  -->
+    <div id="fav-color-toggle">
+      {% if user.is_authenticated %}
+      <span class="visually-hidden" id="fav-color">
+        {{user.favorite_color}}
+      </span>
+      <span class="visually-hidden" id="use-color">
+        {{user.use_favorite_color}}
+      </span>
+      {% endif %}
+    </div>
     {% block index %}
-    <!--  -->
     {% endblock %}
-
     <script src="{% static 'theme.js' %}"></script>
   </body>
 </html>

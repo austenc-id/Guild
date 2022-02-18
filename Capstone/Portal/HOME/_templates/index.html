@@ -6,7 +6,7 @@
     </h1>
 
     <span class="d-flex align-items-center gap-2">
-      <!-- display navlinks based upon whether the
+      <!-- * display navlinks based upon whether the
                 user is logged in or not -->
       {% if user.is_authenticated %}
       <a href="{% url 'portal:logout' %}"> Logout </a>
