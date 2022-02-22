@@ -3,16 +3,18 @@
 <h1>Patrons</h1>
 <ul>
     {% for patron in patrons %}
-    <li>
-        <span class="fs-2">
-            {% if patron.unlimited %} &diam; {% endif %} {{patron.first_name.title}}
+    <li class="d-flex align-items-center gap-4">
+        <span class="fs-4 text-stone">
+            {% if patron.unlimited %} &diam; {% endif %} {{patron.list_name}}
         </span>
-        <span>
-            ${{patron.donation}}
-        </span>
-        <span>
+        {% if patron.donation > 0 %}
+            <span class="fs-5 text-rock">
+                ${{patron.donation}}
+            </span>
+            {% endif %}
+        <small class="text-rubble">
             {% if user.is_superuser %} {{patron.regcode}}{% endif %}
-        </span>
+        </small>
     </li>
     {% endfor %}
 </ul>

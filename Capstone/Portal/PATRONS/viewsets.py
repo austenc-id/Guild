@@ -184,11 +184,6 @@ class patrons:
             return render(REQ, 'forms.html', context)
         return redirect(reverse('portal:home'))
 
-    @login_required
-    def remove(REQ):
-        from .models import Patron
-        patrons = Patron.objects.all()
-
 class toggle:
     @login_required
     def favorite_color(REQ):

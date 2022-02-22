@@ -10,6 +10,7 @@
   --forest: #06690e;
   --rock: #8e8f4d;
   --stone: #b6c8d8;
+  --rubble: #9c9c9c;
   --acme: "Acme", sans-serif;
 }
 #block-index {
@@ -43,6 +44,9 @@ a:hover {
 }
 .text-stone {
   color: var(--stone);
+}
+.text-rubble {
+  color: var(--rubble);
 }
 .text-rock {
   color: var(--rock);

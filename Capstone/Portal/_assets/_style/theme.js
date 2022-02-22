@@ -17,11 +17,9 @@ function defaultTheme(){
   document.getElementById('footer').classList.add('border-t2-void')
   const LINKS = document.getElementsByTagName('a')
   const FORMS = document.getElementsByTagName('form')
-  const SPANS = document.getElementsByTagName('span')
   const TITLE = document.getElementById('site-title')
   setColorClasses(LINKS, "text-sand")
   setColorClasses(FORMS, "border-2-void")
-  setColorClasses(SPANS, "text-rock")
   TITLE.classList.add('text-stone')
 }
 
