@@ -1,5 +1,5 @@
-from django.forms import *
-from .models import *
+from django.forms import ModelForm, HiddenInput
+from .models import Invocation
 
 
 class InvocationForm(ModelForm):

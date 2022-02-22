@@ -1,6 +1,3 @@
-from django.shortcuts import render
-
-
 def index(REQ):
-    # * Render the homepage on inital load
+    from django.shortcuts import render
     return render(REQ, 'index.html')

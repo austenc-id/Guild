@@ -1,17 +1,17 @@
-from django.urls import path, include
-from .views import *
-
+from django.urls import path
+from .views import portal
+from .viewsets import user, update, patrons, toggle
 
 app_name = 'portal'
 urlpatterns = [
     path('', portal, name='home'),
-    path('register/', user_register, name='register'),
-    path('login/', user_login, name='login'),
-    path('logout/', user_logout, name='logout'),
-    path('profile/', user_profile, name='user_profile'),
-    path('update/login/', update_login, name='update_login'),
-    path('update/profile/', update_profile, name='update_profile'),
-    path('toggle/', toggle_color, name='toggle_color'),
-    path('new/', new_patron, name='new_patron'),
-    path('view/', view_patrons, name='view_patrons'),
+    path('register/', user.register, name='register'),
+    path('login/', user.login, name='login'),
+    path('logout/', user.logout, name='logout'),
+    path('profile/', user.profile, name='user_profile'),
+    path('update/login/', update.login, name='update_login'),
+    path('update/profile/', update.profile, name='update_profile'),
+    path('toggle/', toggle.favorite_color, name='toggle_color'),
+    path('new/', patrons.add, name='new_patron'),
+    path('view/', patrons.list, name='view_patrons'),
 ]

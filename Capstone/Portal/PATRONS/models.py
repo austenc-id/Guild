@@ -1,9 +1,5 @@
 from django.db.models import *
 from django.contrib.auth.models import AbstractUser
-from django.contrib.auth import get_user_model
-from colorful.fields import RGBColorField as ColorField
-
-from utils import generators as gen
 
 
 class Patron(Model):
@@ -24,6 +20,7 @@ class Patron(Model):
 
 
 class User(AbstractUser):
+    from colorful.fields import RGBColorField as ColorField
     user_id = CharField(max_length=6)
     username = CharField(max_length=12, unique=True)
     password = CharField(max_length=88)
