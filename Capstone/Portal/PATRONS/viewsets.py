@@ -6,6 +6,11 @@ from django.contrib.auth.decorators import login_required
 
 class user:
     def register(REQ):
+        """
+        GET: renders the registration form
+
+        POST: creates a new user object and redirects to the login page or rerenders the form with errors
+        """
         from _project.utils import retrieve
         from .forms import User
         context = {
@@ -16,7 +21,7 @@ class user:
         if REQ.POST:
             form = User.Register(REQ.POST)
             if form.is_valid():
-                patron = retrieve.patron(REQ.POST['regcode'])
+                patron = retrieve.patron(regcode=REQ.POST['regcode'])
                 if patron:
                     new_user = form.save(patron=patron)
                     return redirect(reverse('portal:login'))
@@ -27,6 +32,11 @@ class user:
         return render(REQ, 'forms.html', context)
 
     def login(REQ):
+        """
+        GET: renders the login form
+
+        POST: sets the request user and redirects to the user's profile page or rerenders the form with errors
+        """
         from .forms import User
         from _project.utils import extract
         context = {
@@ -52,11 +62,17 @@ class user:
 
     @login_required
     def logout(user):
+        """
+        GET: removes the request user and redirects to the login page
+        """
         end(user)
         return redirect(reverse('portal:login'))
 
     @login_required
     def profile(REQ):
+        """
+        GET: renders the user's profile unless flagged to confirm profile details where it will redirect to the 'portal:update_profile'
+        """
         user = REQ.user
         if user.confirm_profile:
             user.confirm_profile = False
@@ -67,6 +83,11 @@ class user:
 class update:
     @login_required
     def login(REQ):
+        """
+        GET: renders the update login form
+
+        POST: sets the user's username and/password and redirects to either the login page or the user's profile page or rerenders the form with errors
+        """
         from .forms import Update
         from .models import User
         context = {
@@ -106,6 +127,11 @@ class update:
     
     @login_required
     def profile(REQ):
+        """
+        GET: renders the user's profile as a form to update details
+
+        POST: saves the user's profile and redirect to the user's profile or rerenders the form with errors
+        """
         from .forms import Update
         user = REQ.user
         context = {
@@ -130,11 +156,17 @@ class update:
 class patrons:
     @login_required
     def list(REQ):
+        """Renders a list of all patrons in the db ordered by donation amount."""
         from .models import Patron
         return render(REQ, 'list.html', {'patrons': Patron.objects.all().order_by('-donation')})
     
     @login_required
     def add(REQ):
+        """
+        GET: if the user has permissions render the new patron form or redirects home if they do not
+        
+        POST: creates a new patron object and redirects to the patron list page or rerenders the form with errors.
+        """
         from .forms import Patrons
         if REQ.user.is_superuser:
             context = {
@@ -160,6 +192,11 @@ class patrons:
 class toggle:
     @login_required
     def favorite_color(REQ):
+        """
+        GET: renders a form to update user.use_favorite_color
+
+        POST: saves the changes then redirects to the user's profile
+        """
         from .forms import Toggle
         context = {
             'form_title': 'toggle favorite color',
@@ -170,5 +207,5 @@ class toggle:
             form = Toggle.FavoriteColor(REQ.POST, instance=REQ.user)
             if form.is_valid():
                 form.save()
-                return redirect(reverse('portal:user_profile'))
+            return redirect(reverse('portal:user_profile'))
         return render(REQ, 'forms.html', context)

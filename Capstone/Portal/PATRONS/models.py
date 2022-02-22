@@ -11,12 +11,13 @@ class Patron(Model):
     unlimited = BooleanField(default=False)
     registered = BooleanField(default=False)
 
-    def legal_name(self):
-        legal_name = f'{self.first_name.title()} {self.last_name.title()}'
-        return legal_name
+    def full_name(self):
+        """Returns the user's full name"""
+        full_name = f'{self.first_name.title()} {self.last_name.title()}'
+        return full_name
 
     def __str__(self):
-        return self.legal_name()
+        return self.full_name()
 
 
 class User(AbstractUser):

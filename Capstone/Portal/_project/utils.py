@@ -1,5 +1,11 @@
 class extract:
-    def request_data(keys, data, return_list=False):
+    def request_data(keys: list, data: object, return_list=False):
+        """
+        returns specified data from a request object as a dict or list
+         return_list:
+            False(default): returns a dictionary
+            True: returns a list with only the values
+        """
         if return_list:
             extracted = []
             for key in keys:
@@ -25,7 +31,10 @@ class extract:
         return extracted
 
 class generate:
-    def digit_code(length):
+    def digit_code(length: int):
+        """
+        returns a string of random integers
+        """
         from random import randint
         code = ''
         while len(code) < length:
@@ -34,17 +43,23 @@ class generate:
         return code
 
 class retrieve:
-    def patron(regcode):
+    def patron(regcode:str=False):
+        """
+        Returns the Patron object matching the specified parameter or False
+        """
         from PATRONS.models import Patron
-        patron = Patron.objects.filter(regcode=regcode)
-        try:
-            patron = patron[0]
-        except:
-            patron = False
+        if regcode:
+            patron = Patron.objects.filter(regcode=regcode)
+            try:
+                patron = patron[0]
+            except:
+                patron = False
         return patron
 
-
     def google_fonts():
+        """
+        returns a list of avaiable fonts from Google's API
+        """
         import requests as api
         from .api_keys import GoogleFonts
         url = f'https://www.googleapis.com/webfonts/v1/webfonts?key={GoogleFonts}'
