@@ -17,7 +17,7 @@ class Patron(Model):
         return full_name    
 
     def list_name(self):
-        """Returns the user's full name"""
+        """Returns the user's first name and last initial"""
         list_name = f'{self.first_name.title()} {self.last_name[0].title()}.'
         return list_name
 
