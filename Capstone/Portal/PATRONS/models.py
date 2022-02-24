@@ -22,7 +22,7 @@ class Patron(Model):
         return list_name
 
     def __str__(self):
-        return self.full_name()
+        return self.list_name()
 
 
 class User(AbstractUser):
