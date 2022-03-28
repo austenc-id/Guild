@@ -1,0 +1,71 @@
+:root {
+  --clr-txt: #32cc04;
+  --clr-bg-primary: #252525;
+  --clr-bg-secondary: #755939be;
+  --clr-bg-tertiary: #000000;
+}
+body {
+  background-color: var(--clr-bg-primary);
+}
+header .portrait {
+  width: 50%;
+  margin: 2.5vh auto 2.5vh;
+}
+@media screen and (min-width: 1000px) {
+  header .portrait {
+    width: 33%;
+  }
+}
+/* @media screen and (min-width: 600px) {
+  .content {
+    background-image: url(../assets/signature-background.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top;
+  }
+} */
+.content {
+  border: 5px solid #ffffff9a;
+  padding: 2.5rem;
+}
+div .heading {
+  margin: 1rem auto 1rem;
+  max-width: 700px;
+}
+details > summary {
+  list-style-type: "◐";
+}
+details[open] > summary {
+  list-style-type: "◑";
+}
+.portrait.dogs {
+  border: 2.5px solid #ffffff9a;
+  border-radius: 100% 50% 100%;
+  max-width: 20vw;
+  height: auto;
+}
+figure {
+  justify-content: center;
+  /* max-width: 25vw; */
+  /* height: auto; */
+  /* margin: auto 1rem; */
+}
+
+figcaption {
+  /* display: flex; */
+  color: white;
+  font-size: 25px;
+  /* justify-content: space-around; */
+}
+#Nova {
+  margin-top: 1.5rem;
+}
+#Fletch {
+  margin-left: -1rem;
+  margin-right: 1rem;
+  margin-bottom: 1.5rem;
+  align-self: flex-end;
+}
+details > span {
+  padding: 50px;
+}
