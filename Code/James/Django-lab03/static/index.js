@@ -1,1 +1,0 @@
-let linkToSite = document.querySelector('')

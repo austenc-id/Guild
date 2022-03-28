@@ -1,1 +1,0 @@
-const FAVQS_API_KEY = 'a5c32b714493f0c718b8bb08abc60c66' 
