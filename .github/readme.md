@@ -1,5 +1,7 @@
 # Guild
 
+Coursework from my time at Portland Code Guild.
+
 ## Assignments
 
 0. Prep Course
