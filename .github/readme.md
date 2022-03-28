@@ -1,6 +1,10 @@
-# Contents
+# Guild
+
+## Assignments
 
 0. Prep Course
+  1. Week 1
+  2. Week 2
 1. Python
 2. HTML & CSS
 3. JavaScript
