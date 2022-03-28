@@ -5,8 +5,8 @@ Coursework from my time at Portland Code Guild.
 ## Assignments
 
 0. Prep Course
-  1. Week 1
-  2. Week 2
+    1. Week 1
+    2. Week 2
 1. Python
   1. Make Change
   2. Averages
